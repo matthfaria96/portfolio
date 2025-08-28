@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matheus Faria | UI/UX Designer</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #00D4AA;
+            --dark-bg: #0a0a0a;
+            --card-bg: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-color: #1a1a1a;
+            --gradient: linear-gradient(135deg, #00D4AA 0%, #00B8D4 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            transition: all 0.2s ease;
+        }
+
+        .navbar {
+            background: rgba(10, 10, 10, 0.1) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .bg-light {
+            background-color: var(--card-bg) !important;
+        }
+
+        /* Navbar */
+        .navbar {
+            backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color) !important;
+            text-decoration: none;
+        }
+
+        /* Logo MF */
+        .logo-mf {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
+        }
+
+        .logo-mf:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 170, 0.4);
+            color: white;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: var(--text-primary) !important;
+            margin: 0 0.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 56vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 50%, #2d3748 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.05)"/></svg>') repeat;
+            animation: float 30s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(-50%, -50%);
+            }
+
+            100% {
+                transform: translate(-50%, -48%);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* New Hero Layout Styles */
+        .profile-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-circle {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-img {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--primary-color);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .hero-subtitle {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 500px;
+        }
+
+        .text-primary {
+            color: var(--primary-color) !important;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: rgba(0, 212, 170, 0.1);
+        }
+
+        /* Hire Button */
+        .btn-hire {
+            display: inline-block;
+            padding: 15px 30px;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-hire:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 212, 170, 0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Container max-width consistency - follow education section pattern */
+        .content-wrapper {
+            max-width: 83.333333%;
+            /* Same as col-lg-10 */
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        /* Project Cards */
+        .project-card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            background-color: var(--card-bg);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.1);
+            border: 1px solid var(--primary-color);
+        }
+
+        .project-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+
+        /* Skills */
+        .skill-item {
+            background: var(--gradient);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 20px;
+            margin: 0.3rem;
+            display: inline-block;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+        }
+
+        .skills-section,
+        .education-section {
+            margin-bottom: 3rem;
+        }
+
+        /* Language Items */
+        .language-items {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .language-item {
+            padding: 0.8rem 1.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            color: var(--text-primary);
+            background: transparent;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .language-item:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        /* Contact */
+        .contact-links a {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin: 0 1rem;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .contact-links a:hover {
+            transform: scale(1.2);
+            text-decoration: none;
+        }
+
+        /* Contact Section Styles */
+        .contact-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-social-link {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-social-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .contact-info {
+            text-align: left;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        .contact-info-item i {
+            width: 20px;
+        }
+
+        /* Text muted fix for better readability */
+        .text-muted {
+            color: #888888 !important;
+        }
+
+        /* Project Modal */
+        .project-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .project-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 15px;
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary-color);
+        }
+
+        .modal-header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .modal-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-item {
+            background: var(--dark-bg);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .detail-item h6 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* UX Process Sections */
+        .ux-process-section {
+            margin-bottom: 2rem;
+        }
+
+        .ux-process-section h6 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .ux-process-section p {
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* Close Button */
+        .modal-close-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+
+        .modal-close-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        /* Curriculum Section Styles */
+        .curriculum-details {
+            text-align: left;
+        }
+
+        .curriculum-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .curriculum-item i {
+            width: 20px;
+        }
+
+        .curriculum-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .curriculum-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 170, 0.3);
+        }
+
+
+
+        /* Simple Language Switch */
+        .language-switch {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 1rem;
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", sans-serif;
+        }
+
+        .language-option img {
+            margin: 5px;
+        }
+
+        .language-option.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .language-option:hover {
+            color: white;
+            text-decoration: none;
+            background: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 170px; 
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 2rem;
+            }
+
+            .profile-circle {
+                width: 280px;
+                height: 280px;
+            }
+
+            .profile-img {
+                width: 220px;
+                height: 220px;
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .social-links {
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+
+            .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
+            .btn-hire {
+                display: block;
+                text-align: center;
+                margin: 0 auto;
+                width: fit-content;
+            }
+
+            .hero-description {
+                text-align: center;
+                margin: 0 auto 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="logo-mf" href="#home">MF</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projetos">Projetos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#educacao">Educação</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experiencias">Experiências</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                </ul>
+
+                <!-- Language Switch -->
+                <div class="language-switch">
+                    <a href="javascript:void(0);" class="language-option active" onclick="switchToPortuguese(this)">
+                        <img src="br_flag.png" width="20" height="20" alt="Brazilian Flag">
+                    </a>
+                    <a href="javascript:void(0);" class="language-option" onclick="switchToEnglish(this)">
+                        <img src="us_flag.png" width="20" height="20" alt="United States Flag">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6 text-center order-2 order-lg-1">
+                    <div class="profile-container">
+                        <div class="profile-circle">
+                            <img src="foto_perfil.jpg?w=400&h=400&fit=crop&crop=face" alt="Matheus Faria"
+                                class="profile-img"
+                                style="width: 320px; height: 320px; border-radius: 50%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-start order-1 order-lg-2">
+                    <h1 class="hero-title">Oi, sou Matheus</h1>
+                    <h2 class="hero-subtitle"><span class="text-primary">UI/UX Designer</span></h2>
+                    <p class="hero-description">Sou um profissional da área de UI/UX e Product Design, trazendo uma
+                        bagagem que une design, tecnologia e gestão de projetos. Minha experiência combina criação
+                        visual, desenvolvimento frontend e edição multimídia, permitindo entregar soluções digitais
+                        completas.</p>
+
+                    <div class="social-links mb-4">
+                        <a href="https://www.linkedin.com/in/matth-faria96/" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/matthfaria96" class="social-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.instagram.com/matth_faria/" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/matheus.faria.3382" class="social-link" target="_blank">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+
+                    <a href="https://wa.me/5519982383328" class="btn-hire" target="_blank">
+                        <i class="fab fa-whatsapp me-2"></i>Fale comigo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projetos Section -->
+    <section id="projetos" class="py-6">
+        <div class="container">
+            <h2 class="section-title">Meus Principais Projetos</h2>
+            <div class="content-wrapper">
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card project-card" data-project="pockets">
+                            <div class="project-img"
+                                style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop&crop=center')">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Pockets</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card project-card" data-project="carreira-fashion">
+                            <div class="project-img"
+                                style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop&crop=center')">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Carreira Fashion</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card project-card" data-project="diva-rose">
+                            <div class="project-img"
+                                style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop&crop=center')">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Diva & Rose</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card project-card" data-project="analytics">
+                            <div class="project-img"
+                                style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop&crop=center')">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Analytics Dashboard</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card project-card" data-project="taskflow">
+                            <div class="project-img"
+                                style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop&crop=center')">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">TaskFlow</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card project-card" data-project="foodie">
+                            <div class="project-img"
+                                style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop&crop=center')">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">FoodieApp</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="card-text text-center mb-0 fs-5">
+                                            Atuo desde o esboço inicial até a entrega do resultado final, criando
+                                            interfaces intuitivas e funcionais. Desenvolvo soluções completas que
+                                            abrangem desde a criação das interfaces até a implementação, sempre com foco
+                                            na experiência do usuário. Quando necessário, realizo ajustes e melhorias
+                                            contínuas para adequar-se perfeitamente às necessidades dos usuários e
+                                            objetivos do projeto.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-6">
+        <div class="container">
+            <h2 class="section-title">Skills & Formação</h2>
+            <div class="content-wrapper">
+
+                <!-- Especializações -->
+                <div class="specializations-section">
+                    <h3 class="text-center mb-4">Especializações</h3>
+                    <div class="row mb-5">
+                        <div class="col-lg-12">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary mb-3">Design & Mídia</h5>
+                                    <p class="card-text">Domínio de Figma, Photoshop e Affinity Designer para
+                                        interfaces, identidades visuais e materiais gráficos. Experiência também em
+                                        edição de vídeos com DaVinci Resolve, Sony Vegas e CapCut.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary mb-3">Tecnologia</h5>
+                                    <p class="card-text">Conhecimento prático em Frontend (HTML, CSS, JavaScript e
+                                        Bootstrap) para criação de sites e landingpages. Além disso, possuo vasto
+                                        conhecimento de suporte técnico em hardware e software.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary mb-3">Gestão de Projetos</h5>
+                                    <p class="card-text">Organização e colaboração em equipes utilizando GitHub, Jira e
+                                        Trello</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Principais Competências -->
+                <div class="skills-section">
+                    <h3 class="text-center mb-4">Principais Competências</h3>
+                    <div class="text-center mb-5">
+                        <span class="skill-item">Figma</span>
+                        <span class="skill-item">GitHub</span>
+                        <span class="skill-item">Front-end</span>
+                        <span class="skill-item">Adobe Photoshop</span>
+                        <span class="skill-item">Gestão de projetos</span>
+                    </div>
+                </div>
+
+                <!-- Hard Skills & Soft Skills -->
+                <div class="hardsoft-skills-section">
+                    <div class="row mb-5">
+                        <div class="col-lg-10 mx-auto">
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h4 class="card-title text-primary mb-4">Hard Skills</h4>
+                                            <ul class="list-unstyled">
+                                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>UI/UX
+                                                    Design</li>
+                                                <li class="mb-2"><i
+                                                        class="fas fa-check text-primary me-2"></i>Prototipagem</li>
+                                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Design
+                                                    Systems</li>
+                                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>User
+                                                    Research</li>
+                                                <li class="mb-2"><i
+                                                        class="fas fa-check text-primary me-2"></i>HTML/CSS/JavaScript
+                                                </li>
+                                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Bootstrap
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h4 class="card-title text-primary mb-4">Soft Skills</h4>
+                                            <ul class="list-unstyled">
+                                                <li class="mb-2"><i
+                                                        class="fas fa-check text-primary me-2"></i>Comunicação</li>
+                                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Trabalho
+                                                    em Equipe</li>
+                                                <li class="mb-2"><i
+                                                        class="fas fa-check text-primary me-2"></i>Criatividade</li>
+                                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Problem
+                                                    Solving</li>
+                                                <li class="mb-2"><i
+                                                        class="fas fa-check text-primary me-2"></i>Adaptabilidade</li>
+                                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Liderança
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Languages -->
+                <div class="text-center">
+                    <h3 class="mb-4">Idiomas</h3>
+                    <div class="language-items">
+                        <span class="language-item">Português (Nativo)</span>
+                        <span class="language-item">Inglês (Avançado)</span>
+                        <span class="language-item">Hebraico (Básico)</span>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Educação Section -->
+    <section id="educacao" class="py-6">
+        <div class="container">
+            <h2 class="section-title">Educação</h2>
+
+            <!-- Formação Acadêmica -->
+            <div class="education-section">
+                <h3 class="text-center mb-4">Formação Acadêmica</h3>
+                <div class="row mb-5">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Bacharelado, Ciência da Computação</h5>
+                                        <h6 class="text-muted">Faculdade de Americana</h6>
+                                        <p class="card-text text-muted">2014 - 2019</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Curso Técnico, Técnico de informática</h5>
+                                        <h6 class="text-muted">Colégio Politec</h6>
+                                        <p class="card-text text-muted">2011 - 2013</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cursos & Certificações -->
+            <div class="courses-section">
+                <h3 class="text-center mb-4">Cursos & Certificações</h3>
+                <div class="row mb-5">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Curso de MySQL</h5>
+                                        <p class="card-text text-muted">Curso em Vídeo - fev de 2019</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Arquitetura de redes</h5>
+                                        <p class="card-text text-muted">Udemy - dez de 2018</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Banco de dados e SQL</h5>
+                                        <p class="card-text text-muted">Udemy - nov de 2018</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Git e GitHub para iniciantes</h5>
+                                        <p class="card-text text-muted">Udemy - mar de 2018</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Gestão de Marketing</h5>
+                                        <p class="card-text text-muted">SEST SENAT - mar de 2017</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Lógica de programação</h5>
+                                        <p class="card-text text-muted">Senai - mar de 2017</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiências Section -->
+    <section id="experiencias" class="py-6">
+        <div class="container">
+            <h2 class="section-title">Experiência Profissional</h2>
+            <div class="content-wrapper">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h5>UI Designer</h5>
+                        <h6 class="text-muted">GF Soluções • mar de 2024 - até o momento</h6>
+                        <p>Desenvolvimento de interfaces de usuário modernas e responsivas para sistemas corporativos.
+                            Criação de componentes reutilizáveis e manutenção de design systems. Colaboração direta com
+                            equipes de desenvolvimento para garantir fidelidade na implementação.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h5>Técnico de informática</h5>
+                        <h6 class="text-muted">Têxtil Álamo Ltda • abr de 2017 - até o momento</h6>
+                        <p>Responsável pela manutenção de infraestrutura de TI, suporte técnico a usuários e
+                            gerenciamento de sistemas corporativos. Implementação de soluções tecnológicas para
+                            otimização de processos industriais e administração de redes locais.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h5>Desenvolvedor de front-end</h5>
+                        <h6 class="text-muted">ORBII • mar de 2022 - fev de 2024</h6>
+                        <p>Desenvolvimento de aplicações web responsivas utilizando tecnologias modernas como React,
+                            JavaScript e CSS. Implementação de interfaces baseadas em designs do Figma, otimização de
+                            performance e integração com APIs REST.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h5>Gerente de mídias sociais</h5>
+                        <h6 class="text-muted">Faria Digital • jan de 2019 - mar de 2022</h6>
+                        <p>Gestão completa de estratégias digitais para clientes diversos. Criação de conteúdo visual,
+                            planejamento de campanhas publicitárias, análise de métricas e crescimento orgânico de redes
+                            sociais. Coordenação de equipe criativa e relacionamento com clientes.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h5>Designer Gráfico</h5>
+                        <h6 class="text-muted">Cart Impress Artes Gráficas • nov de 2012 - abr de 2013</h6>
+                        <p>Criação de materiais gráficos para impressão incluindo cartões de visita, folders, banners e
+                            papelaria corporativa. Desenvolvimento de identidades visuais e preparação de arquivos para
+                            produção gráfica industrial.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h5>Designer de Cartões e Tags</h5>
+                        <h6 class="text-muted">Rajka Representações comerciais • jul de 2012 - jul de 2012</h6>
+                        <p>Especialização no desenvolvimento de cartões promocionais e tags comerciais para produtos
+                            diversos. Criação de layouts atrativos respeitando limitações técnicas de impressão e
+                            acabamento. Trabalho em alta demanda com prazos otimizados.</p>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="py-6">
+        <div class="container">
+            <h2 class="section-title">Vamos Conversar?</h2>
+            <p class="lead text-center mb-5">Entre em contato para discutir projetos ou oportunidades</p>
+
+            <div class="content-wrapper">
+                <div class="row g-4">
+                    <!-- Currículo Column -->
+                    <div class="col-lg-6">
+                        <div class="card h-100">
+                            <div class="card-body text-center d-flex flex-column justify-content-center py-5">
+                                <div class="mb-4">
+                                    <i class="fas fa-file-alt text-primary" style="font-size: 3.5rem;"></i>
+                                </div>
+                                <h3 class="card-title mb-3">Currículo Profissional</h3>
+                                <p class="card-text mb-4" style="color: var(--text-secondary); line-height: 1.6;">
+                                    Disponibilizo meu currículo em formato PDF padrão, contendo informações detalhadas
+                                    sobre minha formação acadêmica, experiência profissional e competências técnicas.
+                                </p>
+                                <div>
+                                    <a href="#" class="curriculum-btn" target="_blank">
+                                        <i class="fas fa-user-tie me-2"></i>
+                                        Visualizar currículo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contato Column -->
+                    <div class="col-lg-6">
+                        <div class="card h-100">
+                            <div class="card-body text-center d-flex flex-column justify-content-center py-5">
+                                <div class="mb-4">
+                                    <i class="fas fa-comments text-primary" style="font-size: 4rem;"></i>
+                                </div>
+                                <h3 class="card-title mb-4">Conecte-se Comigo</h3>
+
+                                <!-- Social Links -->
+                                <div class="contact-social-links mb-4">
+                                    <a href="https://www.linkedin.com/in/matth-faria96/" class="contact-social-link"
+                                        title="LinkedIn" target="_blank">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/matthfaria96" class="contact-social-link" title="GitHub"
+                                        target="_blank">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/matth_faria/" class="contact-social-link"
+                                        title="Instagram" target="_blank">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="https://www.facebook.com/matheus.faria.3382" class="contact-social-link"
+                                        title="Facebook" target="_blank">
+                                        <i class="fab fa-facebook"></i>
+                                    </a>
+                                </div>
+
+                                <!-- Contact Info -->
+                                <div class="contact-info">
+                                    <div class="contact-info-item mb-3">
+                                        <i class="fas fa-envelope text-primary me-3"></i>
+                                        <span>matth.faria96@gmail.com</span>
+                                    </div>
+                                    <div class="contact-info-item mb-3">
+                                        <i class="fas fa-phone text-primary me-3"></i>
+                                        <span>+55 (19) 98238-3328</span>
+                                    </div>
+                                    <div class="contact-info-item mb-3">
+                                        <i class="fas fa-map-marker-alt text-primary me-3"></i>
+                                        <span>Americana, SP</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="project-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <h2 id="modalTitle">Título do Projeto</h2>
+            </div>
+            <div class="modal-body">
+                <div id="modalImage" class="modal-image"></div>
+                <p id="modalDescription">Descrição do projeto</p>
+                <div class="modal-details">
+                    <div class="detail-item">
+                        <h6>Tecnologias</h6>
+                        <p id="modalTechnologies">Lista de tecnologias</p>
+                    </div>
+                    <div class="detail-item">
+                        <h6>Duração</h6>
+                        <p id="modalDuration">Tempo do projeto</p>
+                    </div>
+                    <div class="detail-item">
+                        <h6>Equipe</h6>
+                        <p id="modalTeam">Tamanho da equipe</p>
+                    </div>
+                    <div class="detail-item">
+                        <h6>Resultados</h6>
+                        <p id="modalResults">Resultados alcançados</p>
+                    </div>
+                </div>
+
+                <!-- UX Process Sections -->
+                <div class="ux-process-section">
+                    <h6>O problema</h6>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+
+                <div class="ux-process-section">
+                    <h6>Mapeamento da jornada</h6>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                        mollit anim id est laborum.</p>
+                </div>
+
+                <div class="ux-process-section">
+                    <h6>Hipóteses e incertezas</h6>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                        dicta sunt.</p>
+                </div>
+
+                <div class="ux-process-section">
+                    <h6>Ideação</h6>
+                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
+                        magni dolores eos qui ratione voluptatem sequi nesciunt neque porro quisquam est.</p>
+                </div>
+
+                <div class="ux-process-section">
+                    <h6>Wireframe</h6>
+                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+                        deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate.</p>
+                </div>
+
+                <div class="ux-process-section">
+                    <h6>Protótipo final</h6>
+                    <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis
+                        est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.</p>
+                </div>
+
+                <div class="text-center">
+                    <button class="modal-close-btn" onclick="closeModal()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="currentYear">2025</span> Matheus Faria. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Dark mode detection
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and timeline items
+        document.querySelectorAll('.card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Active navigation links
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+        function updateActiveNavLink() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNavLink);
+        updateActiveNavLink();
+
+        // Project modal data
+        const projectData = {
+            'pockets': {
+                title: 'Pockets',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=300&fit=crop&crop=center',
+                description: 'Aplicativo de controle financeiro pessoal que automatiza a categorização de gastos e oferece insights inteligentes sobre hábitos de consumo. Desenvolvido com foco na simplicidade e eficiência para usuários que buscam melhor gestão financeira.',
+                technologies: 'React Native, Node.js, MongoDB, Firebase, Plaid API',
+                duration: '6 meses',
+                team: '4 pessoas (2 devs, 1 designer, 1 PM)',
+                results: 'Redução de 40% no tempo de categorização manual, 25k downloads nos primeiros 3 meses',
+                liveLink: 'https://pockets-app.com',
+                codeLink: 'https://github.com/lucascamassi/pockets'
+            },
+            'carreira-fashion': {
+                title: 'Carreira Fashion',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=300&fit=crop&crop=center',
+                description: 'Plataforma especializada em vagas de emprego para o setor de moda, com sistema de match inteligente entre candidatos e empresas. Interface otimizada para profissionais criativos com portfólio visual integrado.',
+                technologies: 'Vue.js, Laravel, MySQL, Elasticsearch, AWS S3',
+                duration: '8 meses',
+                team: '6 pessoas (3 devs, 2 designers, 1 PM)',
+                results: 'Aumento de 60% na taxa de contratação, 15k usuários ativos mensais',
+                liveLink: 'https://carreirafashion.com.br',
+                codeLink: 'https://github.com/lucascamassi/carreira-fashion'
+            },
+            'diva-rose': {
+                title: 'Diva & Rose',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=300&fit=crop&crop=center',
+                description: 'E-commerce de móveis de luxo com experiência de compra imersiva. Inclui visualizador 3D de ambientes e sistema de recomendação baseado em estilo pessoal do cliente.',
+                technologies: 'Next.js, Shopify Plus, Three.js, Stripe, Contentful',
+                duration: '10 meses',
+                team: '8 pessoas (4 devs, 2 designers, 1 PM, 1 3D artist)',
+                results: 'Aumento de 85% na conversão, AOV 35% maior que concorrentes',
+                liveLink: 'https://divarose.com.br',
+                codeLink: 'https://github.com/lucascamassi/diva-rose'
+            },
+            'analytics': {
+                title: 'Analytics Dashboard',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=300&fit=crop&crop=center',
+                description: 'Dashboard executivo para análise de métricas empresariais em tempo real. Interface adaptativa que se ajusta automaticamente aos KPIs mais relevantes para cada usuário.',
+                technologies: 'React, D3.js, Python, FastAPI, PostgreSQL, Redis',
+                duration: '12 meses',
+                team: '10 pessoas (5 devs, 2 designers, 2 data scientists, 1 PM)',
+                results: 'Redução de 70% no tempo de geração de relatórios, adotado por 50+ empresas',
+                liveLink: 'https://analytics-pro.com',
+                codeLink: 'https://github.com/lucascamassi/analytics-dashboard'
+            },
+            'taskflow': {
+                title: 'TaskFlow',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=300&fit=crop&crop=center',
+                description: 'Ferramenta de gestão de projetos com foco em metodologias ágeis. Interface colaborativa com timeline visual e sistema de notificações inteligente que aprende com o comportamento da equipe.',
+                technologies: 'Angular, NestJS, GraphQL, PostgreSQL, Socket.io',
+                duration: '9 meses',
+                team: '7 pessoas (4 devs, 2 designers, 1 PM)',
+                results: 'Adoção por 200+ equipes, melhoria de 45% na entrega de projetos no prazo',
+                liveLink: 'https://taskflow.pro',
+                codeLink: 'https://github.com/lucascamassi/taskflow'
+            },
+            'foodie': {
+                title: 'FoodieApp',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=300&fit=crop&crop=center',
+                description: 'Aplicativo de delivery com sistema de recomendações personalizado usando machine learning. Experiência de checkout otimizada e rastreamento em tempo real com gamificação.',
+                technologies: 'Flutter, Django, TensorFlow, PostgreSQL, Redis, Google Maps API',
+                duration: '14 meses',
+                team: '12 pessoas (6 devs, 2 designers, 2 ML engineers, 1 PM, 1 QA)',
+                results: 'Crescimento de 180% no ticket médio, 4.8★ rating na App Store',
+                liveLink: 'https://foodieapp.com.br',
+                codeLink: 'https://github.com/lucascamassi/foodie-app'
+            }
+        };
+
+        // Project modal functions
+        function openModal(projectKey) {
+            const project = projectData[projectKey];
+            if (!project) return;
+
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalImage').style.backgroundImage = `url(${project.image})`;
+            document.getElementById('modalDescription').textContent = project.description;
+            document.getElementById('modalTechnologies').textContent = project.technologies;
+            document.getElementById('modalDuration').textContent = project.duration;
+            document.getElementById('modalTeam').textContent = project.team;
+            document.getElementById('modalResults').textContent = project.results;
+
+            document.getElementById('projectModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Add click events to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', function () {
+                const projectKey = this.getAttribute('data-project');
+                openModal(projectKey);
+            });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('projectModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Update current year to 2025
+        document.getElementById('currentYear').textContent = '2025';
+
+        // Simple language switch functions
+        function switchToEnglish(element) {
+            // Remove active class from current active
+            document.querySelector('.language-option.active').classList.remove('active');
+            // Add active class to EN
+            element.classList.add('active');
+            // You can add your English page URL here later
+            // window.open('your-english-page-url.html', '_blank');
+        }
+
+        function switchToPortuguese(element) {
+            // Remove active class from current active
+            document.querySelector('.language-option.active').classList.remove('active');
+            // Add active class to PT
+            element.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
