@@ -159,9 +159,9 @@ function openModal(projectKey) {
     if (!project) return;
 
     const images = {
-        'school-task': 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&h=300&fit=crop&crop=center',
-        'bussola-talentos': 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=900&h=300&fit=crop&crop=center',
-        'e-planner': 'https://images.unsplash.com/photo-1555421689-d68471e189f2?w=900&h=300&fit=crop&center'
+        'school-task': 'projeto1.png',
+        'bussola-talentos': 'projeto2.png',
+        'e-planner': 'projeto3.png'
     };
 
     // Update modal content
@@ -239,6 +239,24 @@ function getPortugueseProjectData(projectKey) {
     };
     return ptProjects[projectKey];
 }
+
+const projectImages = {
+    'school-task': {
+        ideation: 'projeto1.png?w=800&h=400&fit=crop',
+        wireframe: 'projeto1.png?w=800&h=400&fit=crop',
+        prototype: 'projeto1.png?w=800&h=400&fit=crop'
+    },
+    'bussola-talentos': {
+        ideation: 'projeto1.png?w=800&h=400&fit=crop',
+        wireframe: 'projeto1.png?w=800&h=400&fit=crop',
+        prototype: 'projeto1.png?w=800&h=400&fit=crop'
+    },
+    'e-planner': {
+        ideation: 'projeto1.png?w=800&h=400&fit=crop',
+        wireframe: 'projeto1.png?w=800&h=400&fit=crop',
+        prototype: 'projeto1.png?w=800&h=400&fit=crop'
+    }
+};
 
 function closeModal() {
     document.getElementById('projectModal').classList.remove('active');

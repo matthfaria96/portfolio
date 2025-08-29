@@ -148,22 +148,3 @@ const translations = {
         }
     }
 };
-
-// Project images for modal sections
-const projectImages = {
-    'school-task': {
-        ideation: 'https://images.unsplash.com/photo-1553028826-f4804a6dfd3f?w=800&h=400&fit=crop',
-        wireframe: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop',
-        prototype: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop'
-    },
-    'bussola-talentos': {
-        ideation: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=400&fit=crop',
-        wireframe: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=400&fit=crop',
-        prototype: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop'
-    },
-    'e-planner': {
-        ideation: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&h=400&fit=crop',
-        wireframe: 'https://images.unsplash.com/photo-1555421689-d68471e189f2?w=800&h=400&fit=crop',
-        prototype: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=400&fit=crop'
-    }
-};
