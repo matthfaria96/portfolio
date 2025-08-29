@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+<!DOCTYPE html><html lang="pt-BR"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;"><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matheus Faria | UI/UX Designer</title>
@@ -460,6 +460,96 @@
         .project-card:hover .project-img {
             transform: scale(1.05);
         }
+
+        /* New Project Card Design - App Style */
+        .project-card-new {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.12),
+                0 2px 8px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            position: relative;
+            height: 100%;
+        }
+
+        .project-card-new:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.25),
+                0 8px 32px rgba(0, 212, 170, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            border-color: rgba(0, 212, 170, 0.4);
+            background: linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 184, 212, 0.05) 100%);
+        }
+
+        .project-image-new {
+            height: 455px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            margin: 15px 15px 0 15px;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 212, 170, 0.85) 0%, 
+                rgba(0, 184, 212, 0.85) 50%, 
+                rgba(102, 126, 234, 0.75) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 16px;
+        }
+
+        .project-card-new:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-icon {
+            font-size: 2.8rem;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        .project-content-new {
+            padding: 20px 20px 24px 20px;
+            text-align: left;
+        }
+
+        .project-title-new {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .project-description-new {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin: 0;
+            font-weight: 400;
+        }
+
+
 
         /* Skills */
         .skill-item {
@@ -1012,7 +1102,7 @@
             }
         }
     </style>
-<script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.bd4eeeb8e8e02052ee92.js"></script></head>
+<script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.bd4eeeb8e8e02052ee92.js"></script><script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.bd4eeeb8e8e02052ee92.js"></script></head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -1119,70 +1209,85 @@
     <!-- Projetos Section -->
     <section id="projetos" class="py-5">
         <div class="container">
-            <h2 class="section-title">Meus Principais Projetos</h2>
+            <h2 class="section-title">Projetos</h2>
             <div class="content-wrapper">
+                
+                <!-- Meus Principais Projetos -->
+                <h3 class="text-center mb-4">Meus Principais Projetos</h3>
                 <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card project-card" data-project="pockets">
-                        <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&amp;h=200&amp;fit=crop&amp;crop=center')"></div>
-                        <div class="card-body">
-                            <h5 class="card-title">Pockets</h5>
+                <div class="col-12 mb-4">
+                    <div class="project-card-new" data-project="school-task">
+                        <div class="project-image-new" style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800&amp;h=400&amp;fit=crop&amp;crop=center');">
+                            <div class="project-overlay">
+                                <i class="fas fa-expand-alt project-icon"></i>
+                            </div>
+                        </div>
+                        <div class="project-content-new">
+                            <h5 class="project-title-new">School Task</h5>
+                            <p class="project-description-new">App para gerenciar tempo e organizar tarefas</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card project-card" data-project="carreira-fashion">
-                        <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=400&amp;h=200&amp;fit=crop&amp;crop=center')"></div>
-                        <div class="card-body">
-                            <h5 class="card-title">Carreira Fashion</h5>
+                <div class="col-12 mb-4">
+                    <div class="project-card-new" data-project="bussola-talentos">
+                        <div class="project-image-new" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&amp;h=400&amp;fit=crop&amp;crop=center');">
+                            <div class="project-overlay">
+                                <i class="fas fa-expand-alt project-icon"></i>
+                            </div>
+                        </div>
+                        <div class="project-content-new">
+                            <h5 class="project-title-new">Bússola dos Talentos</h5>
+                            <p class="project-description-new">Testes para descobrir seus talentos e perfil</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card project-card" data-project="diva-rose">
-                        <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1555421689-d68471e189f2?w=400&amp;h=200&amp;fit=crop&amp;crop=center')"></div>
-                        <div class="card-body">
-                            <h5 class="card-title">Diva &amp; Rose</h5>
+                <div class="col-12 mb-4">
+                    <div class="project-card-new" data-project="e-planner">
+                        <div class="project-image-new" style="background-image: url('https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&amp;h=400&amp;fit=crop&amp;crop=center');">
+                            <div class="project-overlay">
+                                <i class="fas fa-expand-alt project-icon"></i>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card project-card" data-project="analytics">
-                        <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&amp;h=200&amp;fit=crop&amp;crop=center')"></div>
-                        <div class="card-body">
-                            <h5 class="card-title">Analytics Dashboard</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card project-card" data-project="taskflow">
-                        <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&amp;h=200&amp;fit=crop&amp;crop=center')"></div>
-                        <div class="card-body">
-                            <h5 class="card-title">TaskFlow</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card project-card" data-project="foodie">
-                        <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=400&amp;h=200&amp;fit=crop&amp;crop=center')"></div>
-                        <div class="card-body">
-                            <h5 class="card-title">FoodieApp</h5>
+                        <div class="project-content-new">
+                            <h5 class="project-title-new">E-planner</h5>
+                            <p class="project-description-new">Aplicativo minimalista para mapeamento de tarefas</p>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="row mt-5">
-                <div class="col-12">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="card-text text-center mb-0 fs-6">
-                                        Atuo desde o esboço inicial até a entrega do resultado final, criando interfaces intuitivas e funcionais. Desenvolvo soluções completas que abrangem desde a criação das interfaces até a implementação, sempre com foco na experiência do usuário. Quando necessário, realizo ajustes e melhorias contínuas para adequar-se perfeitamente às necessidades dos usuários e objetivos do projeto.
-                                    </p>
+            <!-- Minha Atuação -->
+            <h3 class="text-center mb-4 mt-5">Minha Atuação</h3>
+            <div class="row mt-4">
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="fas fa-lightbulb text-primary" style="font-size: 3rem;"></i>
+                                </div>
+                                <div>
+                                    <h5 class="card-title mb-1">Do Conceito ao Design</h5>
+                                    <small class="text-muted">Criatividade em Ação</small>
                                 </div>
                             </div>
+                            <p class="card-text">Transformo ideias abstratas em soluções visuais concretas. Desde o primeiro esboço no papel até protótipos interativos no Figma, conduzo todo o processo criativo. Realizo pesquisas de usuário, defino personas, crio wireframes e desenvolvo sistemas de design que garantem consistência e excelência em cada pixel.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="fas fa-rocket text-primary" style="font-size: 3rem;"></i>
+                                </div>
+                                <div>
+                                    <h5 class="card-title mb-1">Desenvolvimento &amp; Divulgação</h5>
+                                    <small class="text-muted">Entrega Completa</small>
+                                </div>
+                            </div>
+                            <p class="card-text">Complemento o trabalho de design desenvolvendo landing pages para apresentar os produtos criados. Produzo materiais visuais para redes sociais e campanhas de divulgação, garantindo consistência visual da marca. Monitoro métricas de performance e implemento melhorias baseadas no comportamento dos usuários, assegurando que o design atinja seus objetivos de conversão.</p>
                         </div>
                     </div>
                 </div>
@@ -1680,71 +1785,38 @@
 
         // Project modal data
         const projectData = {
-            'pockets': {
-                title: 'Pockets',
-                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=300&fit=crop&crop=center',
-                description: 'Aplicativo de controle financeiro pessoal que automatiza a categorização de gastos e oferece insights inteligentes sobre hábitos de consumo. Desenvolvido com foco na simplicidade e eficiência para usuários que buscam melhor gestão financeira.',
-                technologies: 'React Native, Node.js, MongoDB, Firebase, Plaid API',
+            'school-task': {
+                title: 'School Task',
+                image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&h=300&fit=crop&crop=center',
+                description: 'Plataforma digital desenvolvida para gestão educacional, facilitando a comunicação entre professores, alunos e pais com interface intuitiva e recursos colaborativos.',
+                technologies: 'React, Node.js, MongoDB, Firebase, Socket.io',
+                duration: '8 meses',
+                team: '5 pessoas (3 devs, 1 designer, 1 PM)',
+                results: 'Adoção por 50+ escolas, melhoria de 60% na comunicação escola-família',
+                liveLink: 'https://school-task.com',
+                codeLink: 'https://github.com/matthfaria96/school-task'
+            },
+            'bussola-talentos': {
+                title: 'Bússola dos Talentos',
+                image: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=900&h=300&fit=crop&crop=center',
+                description: 'Sistema de orientação vocacional que conecta estudantes às suas aptidões profissionais através de testes personalizados e análises comportamentais avançadas.',
+                technologies: 'Vue.js, Python, Django, PostgreSQL, TensorFlow',
+                duration: '10 meses',
+                team: '6 pessoas (3 devs, 2 designers, 1 data scientist)',
+                results: 'Orientação de 10k+ estudantes, 85% de satisfação nas escolhas vocacionais',
+                liveLink: 'https://bussolatalentos.com.br',
+                codeLink: 'https://github.com/matthfaria96/bussola-talentos'
+            },
+            'e-planner': {
+                title: 'E-planner',
+                image: 'https://images.unsplash.com/photo-1555421689-d68471e189f2?w=900&h=300&fit=crop&center',
+                description: 'Aplicativo de planejamento pessoal e profissional com recursos de agenda inteligente, definição de metas e acompanhamento de progresso em tempo real.',
+                technologies: 'Flutter, Firebase, Node.js, MongoDB, Google Calendar API',
                 duration: '6 meses',
                 team: '4 pessoas (2 devs, 1 designer, 1 PM)',
-                results: 'Redução de 40% no tempo de categorização manual, 25k downloads nos primeiros 3 meses',
-                liveLink: 'https://pockets-app.com',
-                codeLink: 'https://github.com/lucascamassi/pockets'
-            },
-            'carreira-fashion': {
-                title: 'Carreira Fashion',
-                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&h=300&fit=crop&crop=center',
-                description: 'Plataforma especializada em vagas de emprego para o setor de moda, com sistema de match inteligente entre candidatos e empresas. Interface otimizada para profissionais criativos com portfólio visual integrado.',
-                technologies: 'Vue.js, Laravel, MySQL, Elasticsearch, AWS S3',
-                duration: '8 meses',
-                team: '6 pessoas (3 devs, 2 designers, 1 PM)',
-                results: 'Aumento de 60% na taxa de contratação, 15k usuários ativos mensais',
-                liveLink: 'https://carreirafashion.com.br',
-                codeLink: 'https://github.com/lucascamassi/carreira-fashion'
-            },
-            'diva-rose': {
-                title: 'Diva & Rose',
-                image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=900&h=300&fit=crop&crop=center',
-                description: 'E-commerce de móveis de luxo com experiência de compra imersiva. Inclui visualizador 3D de ambientes e sistema de recomendação baseado em estilo pessoal do cliente.',
-                technologies: 'Next.js, Shopify Plus, Three.js, Stripe, Contentful',
-                duration: '10 meses',
-                team: '8 pessoas (4 devs, 2 designers, 1 PM, 1 3D artist)',
-                results: 'Aumento de 85% na conversão, AOV 35% maior que concorrentes',
-                liveLink: 'https://divarose.com.br',
-                codeLink: 'https://github.com/lucascamassi/diva-rose'
-            },
-            'analytics': {
-                title: 'Analytics Dashboard',
-                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=300&fit=crop&crop=center',
-                description: 'Dashboard executivo para análise de métricas empresariais em tempo real. Interface adaptativa que se ajusta automaticamente aos KPIs mais relevantes para cada usuário.',
-                technologies: 'React, D3.js, Python, FastAPI, PostgreSQL, Redis',
-                duration: '12 meses',
-                team: '10 pessoas (5 devs, 2 designers, 2 data scientists, 1 PM)',
-                results: 'Redução de 70% no tempo de geração de relatórios, adotado por 50+ empresas',
-                liveLink: 'https://analytics-pro.com',
-                codeLink: 'https://github.com/lucascamassi/analytics-dashboard'
-            },
-            'taskflow': {
-                title: 'TaskFlow',
-                image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&h=300&fit=crop&crop=center',
-                description: 'Ferramenta de gestão de projetos com foco em metodologias ágeis. Interface colaborativa com timeline visual e sistema de notificações inteligente que aprende com o comportamento da equipe.',
-                technologies: 'Angular, NestJS, GraphQL, PostgreSQL, Socket.io',
-                duration: '9 meses',
-                team: '7 pessoas (4 devs, 2 designers, 1 PM)',
-                results: 'Adoção por 200+ equipes, melhoria de 45% na entrega de projetos no prazo',
-                liveLink: 'https://taskflow.pro',
-                codeLink: 'https://github.com/lucascamassi/taskflow'
-            },
-            'foodie': {
-                title: 'FoodieApp',
-                image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=900&h=300&fit=crop&crop=center',
-                description: 'Aplicativo de delivery com sistema de recomendações personalizado usando machine learning. Experiência de checkout otimizada e rastreamento em tempo real com gamificação.',
-                technologies: 'Flutter, Django, TensorFlow, PostgreSQL, Redis, Google Maps API',
-                duration: '14 meses',
-                team: '12 pessoas (6 devs, 2 designers, 2 ML engineers, 1 PM, 1 QA)',
-                results: 'Crescimento de 180% no ticket médio, 4.8★ rating na App Store',
-                liveLink: 'https://foodieapp.com.br',
-                codeLink: 'https://github.com/lucascamassi/foodie-app'
+                results: 'Aumento de 70% na produtividade dos usuários, 4.7★ rating nas app stores',
+                liveLink: 'https://e-planner.app',
+                codeLink: 'https://github.com/matthfaria96/e-planner'
             }
         };
 
@@ -1771,7 +1843,7 @@
         }
 
         // Add click events to project cards
-        document.querySelectorAll('.project-card').forEach(card => {
+        document.querySelectorAll('.project-card, .project-card-new').forEach(card => {
             card.addEventListener('click', function() {
                 const projectKey = this.getAttribute('data-project');
                 openModal(projectKey);
@@ -1852,6 +1924,7 @@
             }
         });
     </script>
+
 
 
 </body></html>
