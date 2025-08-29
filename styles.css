@@ -957,32 +957,42 @@ footer {
 }
 
 @media (max-width: 768px) {
+    /* Hero Section Mobile Improvements */
+    .hero {
+        padding: 100px 0 3rem;
+        min-height: auto;
+    }
+    
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
     }
     
     .hero-subtitle {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
     }
 
     .profile-circle {
         width: 280px;
         height: 280px;
+        margin-bottom: 2rem;
     }
     
     .profile-img {
         width: 220px;
         height: 220px;
-        font-size: 3rem;
     }
     
     .section-title {
         font-size: 2rem;
+        margin-bottom: 2rem;
     }
 
     .social-links {
         justify-content: center;
         margin-bottom: 2rem;
+        gap: 0.8rem;
     }
 
     .social-link {
@@ -996,11 +1006,44 @@ footer {
         text-align: center;
         margin: 0 auto;
         width: fit-content;
+        padding: 12px 25px;
+        font-size: 1rem;
     }
 
     .hero-description {
         text-align: center;
         margin: 0 auto 2rem;
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    /* Modal Mobile Improvements */
+    .project-modal {
+        padding: 0.5rem;
+        padding-top: 2.5rem;
+    }
+    
+    .modal-content {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 12px;
+        max-height: 95vh;
+    }
+    
+    .modal-close {
+        top: 0.8rem;
+        right: 0.8rem;
+        width: 35px;
+        height: 35px;
+        font-size: 1.5rem;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        color: white;
+    }
+    
+    .modal-close:hover {
+        background: rgba(0, 0, 0, 0.9);
+        color: var(--primary-color);
     }
 
     .modal-details {
@@ -1009,11 +1052,35 @@ footer {
     }
     
     .modal-body {
-        padding: 1.5rem;
+        padding: 1rem;
     }
     
     .modal-header {
-        padding: 1.5rem;
+        padding: 1.5rem 1rem 1rem;
+    }
+    
+    .modal-image {
+        height: 200px;
+        margin-bottom: 1.5rem;
+    }
+
+    /* General Mobile Section Spacing */
+    section {
+        padding: 3rem 0;
+    }
+    
+    .content-wrapper {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+
+    /* Mobile specific spacing adjustments */
+    .hero .col-lg-6 {
+        padding: 0 1rem;
+    }
+    
+    .hero .order-1 {
+        margin-bottom: 2rem;
     }
 
 }
