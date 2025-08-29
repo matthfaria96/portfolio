@@ -798,6 +798,45 @@ section {
     box-shadow: 0 5px 15px rgba(0, 212, 170, 0.3);
 }
 
+/* Mobile Fixed Close Button for Modal */
+.modal-close-mobile {
+    display: none;
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10001;
+    padding: 15px 30px;
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--glass-border);
+    color: var(--text-primary);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        var(--glass-shadow),
+        0 0 20px rgba(0, 212, 170, 0.2);
+    min-width: 180px;
+}
+
+.modal-close-mobile:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 
+        var(--glass-shadow),
+        0 0 30px rgba(0, 212, 170, 0.4);
+}
+
+.modal-close-mobile i {
+    pointer-events: none;
+}
+
 /* Flag Icons */
 .flag-icon {
     width: 16px;
@@ -966,11 +1005,13 @@ footer {
     .hero-title {
         font-size: 2.2rem;
         margin-bottom: 1rem;
+        text-align: center;
     }
     
     .hero-subtitle {
         font-size: 1.8rem;
         margin-bottom: 1.5rem;
+        text-align: center;
     }
 
     .profile-circle {
@@ -1053,6 +1094,7 @@ footer {
     
     .modal-body {
         padding: 1rem;
+        padding-bottom: 6rem; /* Space for fixed button */
     }
     
     .modal-header {
@@ -1062,6 +1104,15 @@ footer {
     .modal-image {
         height: 200px;
         margin-bottom: 1.5rem;
+    }
+
+    /* Show mobile fixed close button and hide desktop close button on mobile */
+    .modal-close-mobile {
+        display: block;
+    }
+    
+    .modal-close-btn {
+        display: none;
     }
 
     /* General Mobile Section Spacing */
