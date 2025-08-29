@@ -200,6 +200,14 @@ function openModal(projectKey) {
 
     document.getElementById('projectModal').classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Always scroll to top when opening modal - FIXED SCROLL ISSUE
+    setTimeout(() => {
+        const modalContent = document.querySelector('.modal-content');
+        if (modalContent) {
+            modalContent.scrollTop = 0;
+        }
+    }, 50);
 }
 
 function getPortugueseProjectData(projectKey) {
