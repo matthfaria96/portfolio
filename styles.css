@@ -11,8 +11,6 @@
     --text-secondary: rgba(255, 255, 255, 0.7);
     --text-muted: rgba(255, 255, 255, 0.5);
     --gradient-primary: linear-gradient(135deg, #00D4AA 0%, #00B8D4 50%, #667eea 100%);
-    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     --gradient: var(--gradient-primary);
     --card-bg: var(--glass-bg);
     --border-color: var(--glass-border);
@@ -49,7 +47,16 @@ body::before {
     z-index: -1;
 }
 
-/* Glass Navbar */
+/* Glass Effects */
+.glass-effect {
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+/* Navbar */
 .navbar {
     background: var(--glass-bg) !important;
     -webkit-backdrop-filter: blur(20px);
@@ -68,7 +75,7 @@ body::before {
     background: rgba(255, 255, 255, 0.08) !important;
 }
 
-/* Glass Cards */
+/* Cards */
 .card {
     background: var(--glass-bg);
     -webkit-backdrop-filter: blur(10px);
@@ -76,7 +83,7 @@ body::before {
     border: 1px solid var(--glass-border);
     color: var(--text-primary);
     box-shadow: var(--glass-shadow);
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
 }
@@ -90,30 +97,7 @@ body::before {
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Project Cards Shimmer Effect */
-.project-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.6s;
-}
-
-.project-card:hover::before {
-    left: 100%;
-}
-
-.navbar-brand {
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: var(--primary-color) !important;
-    text-decoration: none;
-}
-
-/* Glass Logo MF */
+/* Logo MF */
 .logo-mf {
     width: 45px;
     height: 45px;
@@ -184,7 +168,7 @@ body::before {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-/* Glass Hero Section */
+/* Hero Section */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -234,7 +218,7 @@ body::before {
     z-index: 2;
 }
 
-/* Glass Profile */
+/* Profile */
 .profile-container {
     position: relative;
     width: 100%;
@@ -390,9 +374,8 @@ section {
     padding: 5rem 0;
 }
 
-/* Container max-width consistency - follow education section pattern */
 .content-wrapper {
-    max-width: 83.333333%; /* Same as col-lg-10 */
+    max-width: 83.333333%;
     margin: 0 auto;
 }
 
@@ -416,36 +399,6 @@ section {
 }
 
 /* Project Cards */
-.project-card {
-    border: none;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    height: 100%;
-    background-color: var(--card-bg);
-    cursor: pointer;
-    border: 1px solid transparent;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 212, 170, 0.1);
-    border: 1px solid var(--primary-color);
-}
-
-.project-img {
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: transform 0.3s ease;
-}
-
-.project-card:hover .project-img {
-    transform: scale(1.05);
-}
-
-/* New Project Card Design - App Style */
 .project-card-new {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
     -webkit-backdrop-filter: blur(20px);
@@ -616,20 +569,6 @@ section {
     border-radius: 50%;
 }
 
-/* Contact */
-.contact-links a {
-    color: var(--primary-color);
-    font-size: 2rem;
-    margin: 0 1rem;
-    transition: transform 0.3s ease;
-    text-decoration: none;
-}
-
-.contact-links a:hover {
-    transform: scale(1.2);
-    text-decoration: none;
-}
-
 /* Contact Section Styles */
 .contact-social-links {
     display: flex;
@@ -672,7 +611,6 @@ section {
     width: 20px;
 }
 
-/* Text muted fix for better readability */
 .text-muted {
     color: #888888 !important;
 }
@@ -764,22 +702,6 @@ section {
     margin-bottom: 2rem;
 }
 
-/* Modal responsive adjustments */
-@media (max-width: 576px) {
-    .modal-details {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .modal-body {
-        padding: 1.5rem;
-    }
-    
-    .modal-header {
-        padding: 1.5rem;
-    }
-}
-
 .detail-item {
     background: var(--glass-bg);
     -webkit-backdrop-filter: blur(10px);
@@ -812,7 +734,29 @@ section {
     color: var(--text-secondary);
 }
 
-/* Close Button */
+.process-image {
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.process-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    display: block;
+}
+
+.process-image:hover {
+    transform: scale(1.02);
+}
+
 .modal-close-btn {
     display: inline-block;
     padding: 12px 30px;
@@ -832,23 +776,6 @@ section {
     border-color: var(--primary-color);
     color: var(--primary-color);
     transform: scale(1.05);
-}
-
-/* Curriculum Section Styles */
-.curriculum-details {
-    text-align: left;
-}
-
-.curriculum-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.8rem;
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-}
-
-.curriculum-item i {
-    width: 20px;
 }
 
 .curriculum-btn {
@@ -871,7 +798,7 @@ section {
     box-shadow: 0 5px 15px rgba(0, 212, 170, 0.3);
 }
 
-/* Flag Icons CSS */
+/* Flag Icons */
 .flag-icon {
     width: 16px;
     height: 12px;
@@ -896,7 +823,6 @@ section {
     margin-left: 1rem;
 }
 
-/* Desktop Dropdown */
 .language-dropdown {
     position: relative;
 }
@@ -975,7 +901,6 @@ section {
     border-radius: 0 0 10px 10px;
 }
 
-/* Mobile Switch */
 .language-mobile-switch {
     display: flex;
     align-items: center;
@@ -1024,14 +949,13 @@ footer {
     margin-top: 8rem;
 }
 
-/* Hamburger Menu Spacing */
+/* Responsive */
 @media (max-width: 991.98px) {
     .navbar-collapse {
         margin-top: 1.5rem;
     }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2.5rem;
@@ -1078,4 +1002,18 @@ footer {
         text-align: center;
         margin: 0 auto 2rem;
     }
+
+    .modal-details {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .modal-body {
+        padding: 1.5rem;
+    }
+    
+    .modal-header {
+        padding: 1.5rem;
+    }
+
 }

@@ -1,40 +1,103 @@
-// Dark mode detection
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.documentElement.classList.add('dark');
-}
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-    if (event.matches) {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
-    }
-});
+// Current language state and original content storage
+let currentLanguage = 'pt';
+let originalContent = {};
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+// Dark mode detection (optimized)
+const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+function handleDarkMode(e) {
+    document.documentElement.classList.toggle('dark', e.matches);
+}
+darkModeQuery.addEventListener('change', handleDarkMode);
+handleDarkMode(darkModeQuery);
+
+// Store original content before any translation
+function storeOriginalContent() {
+    const elements = document.querySelectorAll('[data-translate]');
+    elements.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        originalContent[key] = element.textContent;
+    });
+    
+    // Store project title
+    const projectTitleBussola = document.querySelector('[data-project-title="bussola-talentos"]');
+    if (projectTitleBussola) {
+        originalContent['bussolaTitle'] = projectTitleBussola.textContent;
+    }
+}
+
+// Translation function
+function translatePage(language) {
+    const elements = document.querySelectorAll('[data-translate]');
+    
+    if (language === 'pt') {
+        // Restore original Portuguese content
+        elements.forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (originalContent[key]) {
+                element.textContent = originalContent[key];
+            }
+        });
+        
+        // Restore project title
+        const projectTitleBussola = document.querySelector('[data-project-title="bussola-talentos"]');
+        if (projectTitleBussola && originalContent['bussolaTitle']) {
+            projectTitleBussola.textContent = originalContent['bussolaTitle'];
+        }
+    } else if (language === 'en' && translations[language]) {
+        // Apply English translations
+        elements.forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (translations[language][key]) {
+                element.textContent = translations[language][key];
+            }
+        });
+        
+        // Update project title
+        const projectTitleBussola = document.querySelector('[data-project-title="bussola-talentos"]');
+        if (projectTitleBussola && translations[language].projects['bussola-talentos']) {
+            projectTitleBussola.textContent = translations[language].projects['bussola-talentos'].title;
+        }
+    }
+    
+    // Update document language
+    document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'en';
+    currentLanguage = language;
+}
+
+// Optimized smooth scrolling
+function initSmoothScrolling() {
+    document.addEventListener('click', function(e) {
+        const anchor = e.target.closest('a[href^="#"]');
+        if (anchor) {
+            e.preventDefault();
+            const target = document.querySelector(anchor.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         }
     });
-});
+}
 
-// Navbar background on scroll
-window.addEventListener('scroll', function() {
+// Optimized navbar background on scroll
+let ticking = false;
+function updateNavbar() {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-    } else {
-        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-    }
-});
+    navbar.style.backgroundColor = window.scrollY > 50 ? 
+        'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)';
+    ticking = false;
+}
 
-// Animation on scroll
+function onScroll() {
+    if (!ticking) {
+        requestAnimationFrame(updateNavbar);
+        ticking = true;
+    }
+}
+
+// Optimized intersection observer
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -49,134 +112,124 @@ const observer = new IntersectionObserver(function(entries) {
     });
 }, observerOptions);
 
-// Observe all cards and timeline items
-document.querySelectorAll('.card, .timeline-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
+// Initialize scroll animations
+function initScrollAnimations() {
+    document.querySelectorAll('.card, .timeline-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
 
-// Active navigation links
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-
+// Optimized active navigation links
+let navTicking = false;
 function updateActiveNavLink() {
     let current = '';
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
         if (window.pageYOffset >= sectionTop - 200) {
             current = section.getAttribute('id');
         }
     });
 
     navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-            link.classList.add('active');
-        }
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
     });
+    navTicking = false;
 }
 
-window.addEventListener('scroll', updateActiveNavLink);
-updateActiveNavLink();
-
-// Detect current language
-const isEnglish = document.documentElement.lang === 'en';
-
-// Project modal data - Portuguese
-const projectDataPT = {
-    'school-task': {
-        title: 'School Task',
-        image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&h=300&fit=crop&crop=center',
-        description: 'Plataforma digital desenvolvida para gestão educacional, facilitando a comunicação entre professores, alunos e pais com interface intuitiva e recursos colaborativos.',
-        technologies: 'React, Node.js, MongoDB, Firebase, Socket.io',
-        duration: '8 meses',
-        team: '5 pessoas (3 devs, 1 designer, 1 PM)',
-        results: 'Adoção por 50+ escolas, melhoria de 60% na comunicação escola-família',
-        liveLink: 'https://school-task.com',
-        codeLink: 'https://github.com/matthfaria96/school-task'
-    },
-    'bussola-talentos': {
-        title: 'Bússola dos Talentos',
-        image: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=900&h=300&fit=crop&crop=center',
-        description: 'Sistema de orientação vocacional que conecta estudantes às suas aptidões profissionais através de testes personalizados e análises comportamentais avançadas.',
-        technologies: 'Vue.js, Python, Django, PostgreSQL, TensorFlow',
-        duration: '10 meses',
-        team: '6 pessoas (3 devs, 2 designers, 1 data scientist)',
-        results: 'Orientação de 10k+ estudantes, 85% de satisfação nas escolhas vocacionais',
-        liveLink: 'https://bussolatalentos.com.br',
-        codeLink: 'https://github.com/matthfaria96/bussola-talentos'
-    },
-    'e-planner': {
-        title: 'E-planner',
-        image: 'https://images.unsplash.com/photo-1555421689-d68471e189f2?w=900&h=300&fit=crop&center',
-        description: 'Aplicativo de planejamento pessoal e profissional com recursos de agenda inteligente, definição de metas e acompanhamento de progresso em tempo real.',
-        technologies: 'Flutter, Firebase, Node.js, MongoDB, Google Calendar API',
-        duration: '6 meses',
-        team: '4 pessoas (2 devs, 1 designer, 1 PM)',
-        results: 'Aumento de 70% na produtividade dos usuários, 4.7★ rating nas app stores',
-        liveLink: 'https://e-planner.app',
-        codeLink: 'https://github.com/matthfaria96/e-planner'
+function onNavScroll() {
+    if (!navTicking) {
+        requestAnimationFrame(updateActiveNavLink);
+        navTicking = true;
     }
-};
-
-// Project modal data - English
-const projectDataEN = {
-    'school-task': {
-        title: 'School Task',
-        image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&h=300&fit=crop&crop=center',
-        description: 'Digital platform developed for educational management, facilitating communication between teachers, students, and parents with an intuitive interface and collaborative features.',
-        technologies: 'React, Node.js, MongoDB, Firebase, Socket.io',
-        duration: '8 months',
-        team: '5 people (3 devs, 1 designer, 1 PM)',
-        results: 'Adoption by 50+ schools, 60% improvement in school-family communication',
-        liveLink: 'https://school-task.com',
-        codeLink: 'https://github.com/matthfaria96/school-task'
-    },
-    'bussola-talentos': {
-        title: 'Talents Compass',
-        image: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=900&h=300&fit=crop&crop=center',
-        description: 'Vocational guidance system that connects students to their professional aptitudes through personalized tests and advanced behavioral analysis.',
-        technologies: 'Vue.js, Python, Django, PostgreSQL, TensorFlow',
-        duration: '10 months',
-        team: '6 people (3 devs, 2 designers, 1 data scientist)',
-        results: 'Guided 10k+ students, 85% satisfaction in vocational choices',
-        liveLink: 'https://bussolatalentos.com.br',
-        codeLink: 'https://github.com/matthfaria96/bussola-talentos'
-    },
-    'e-planner': {
-        title: 'E-planner',
-        image: 'https://images.unsplash.com/photo-1555421689-d68471e189f2?w=900&h=300&fit=crop&center',
-        description: 'Personal and professional planning app with smart calendar features, goal setting, and real-time progress tracking.',
-        technologies: 'Flutter, Firebase, Node.js, MongoDB, Google Calendar API',
-        duration: '6 months',
-        team: '4 people (2 devs, 1 designer, 1 PM)',
-        results: '70% increase in user productivity, 4.7★ rating on app stores',
-        liveLink: 'https://e-planner.app',
-        codeLink: 'https://github.com/matthfaria96/e-planner'
-    }
-};
-
-// Select project data based on language
-const projectData = isEnglish ? projectDataEN : projectDataPT;
+}
 
 // Project modal functions
 function openModal(projectKey) {
-    const project = projectData[projectKey];
+    const isEnglish = currentLanguage === 'en';
+    const project = isEnglish ? 
+        translations.en.projects[projectKey] : 
+        getPortugueseProjectData(projectKey);
+    
     if (!project) return;
 
+    const images = {
+        'school-task': 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&h=300&fit=crop&crop=center',
+        'bussola-talentos': 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=900&h=300&fit=crop&crop=center',
+        'e-planner': 'https://images.unsplash.com/photo-1555421689-d68471e189f2?w=900&h=300&fit=crop&center'
+    };
+
+    // Update modal content
     document.getElementById('modalTitle').textContent = project.title;
-    document.getElementById('modalImage').style.backgroundImage = `url(${project.image})`;
+    document.getElementById('modalImage').style.backgroundImage = `url(${images[projectKey]})`;
     document.getElementById('modalDescription').textContent = project.description;
     document.getElementById('modalTechnologies').textContent = project.technologies;
     document.getElementById('modalDuration').textContent = project.duration;
     document.getElementById('modalTeam').textContent = project.team;
     document.getElementById('modalResults').textContent = project.results;
 
+    // Update process section texts
+    if (isEnglish) {
+        document.getElementById('modalProblemText').textContent = project.problemText;
+        document.getElementById('modalJourneyText').textContent = project.journeyText;
+        document.getElementById('modalHypothesesText').textContent = project.hypothesesText;
+        document.getElementById('modalIdeationText').textContent = project.ideationText;
+        document.getElementById('modalWireframeText').textContent = project.wireframeText;
+        document.getElementById('modalPrototypeText').textContent = project.prototypeText;
+    } else {
+        // Keep original Portuguese texts
+        document.getElementById('modalProblemText').textContent = 'Escolas enfrentavam dificuldades com sistemas de comunicação fragmentados, resultando em informações perdidas e coordenação deficiente entre pais e professores.';
+        document.getElementById('modalJourneyText').textContent = 'Mapeamos todo o ecossistema educacional desde a matrícula até a formatura, identificando pontos-chave de contato e pontos problemáticos.';
+        document.getElementById('modalHypothesesText').textContent = 'Nossa hipótese era que uma plataforma unificada reduziria as lacunas de comunicação em 50% e aumentaria o engajamento dos pais.';
+        document.getElementById('modalIdeationText').textContent = 'Desenvolvemos soluções incluindo mensagens em tempo real, acompanhamento de progresso e notificações automatizadas.';
+        document.getElementById('modalWireframeText').textContent = 'Criamos wireframes de baixa fidelidade focando em navegação intuitiva e hierarquia clara de informações.';
+        document.getElementById('modalPrototypeText').textContent = 'Desenvolvemos protótipos de alta fidelidade com elementos interativos e testes abrangentes de usuário.';
+    }
+
+    // Update process images based on project
+    if (projectImages[projectKey]) {
+        document.getElementById('modalIdeationImage').innerHTML = `<img src="${projectImages[projectKey].ideation}" alt="Ideação" />`;
+        document.getElementById('modalWireframeImage').innerHTML = `<img src="${projectImages[projectKey].wireframe}" alt="Wireframe" />`;
+        document.getElementById('modalPrototypeImage').innerHTML = `<img src="${projectImages[projectKey].prototype}" alt="Protótipo" />`;
+    }
+
     document.getElementById('projectModal').classList.add('active');
     document.body.style.overflow = 'hidden';
+}
+
+function getPortugueseProjectData(projectKey) {
+    const ptProjects = {
+        'school-task': {
+            title: 'School Task',
+            description: 'Plataforma digital desenvolvida para gestão educacional, facilitando a comunicação entre professores, alunos e pais com interface intuitiva e recursos colaborativos.',
+            technologies: 'React, Node.js, MongoDB, Firebase, Socket.io',
+            duration: '8 meses',
+            team: '5 pessoas (3 devs, 1 designer, 1 PM)',
+            results: 'Adoção por 50+ escolas, melhoria de 60% na comunicação escola-família'
+        },
+        'bussola-talentos': {
+            title: 'Bússola dos Talentos',
+            description: 'Sistema de orientação vocacional que conecta estudantes às suas aptidões profissionais através de testes personalizados e análises comportamentais avançadas.',
+            technologies: 'Vue.js, Python, Django, PostgreSQL, TensorFlow',
+            duration: '10 meses',
+            team: '6 pessoas (3 devs, 2 designers, 1 data scientist)',
+            results: 'Orientação de 10k+ estudantes, 85% de satisfação nas escolhas vocacionais'
+        },
+        'e-planner': {
+            title: 'E-planner',
+            description: 'Aplicativo de planejamento pessoal e profissional com recursos de agenda inteligente, definição de metas e acompanhamento de progresso em tempo real.',
+            technologies: 'Flutter, Firebase, Node.js, MongoDB, Google Calendar API',
+            duration: '6 meses',
+            team: '4 pessoas (2 devs, 1 designer, 1 PM)',
+            results: 'Aumento de 70% na produtividade dos usuários, 4.7★ rating nas app stores'
+        }
+    };
+    return ptProjects[projectKey];
 }
 
 function closeModal() {
@@ -184,34 +237,7 @@ function closeModal() {
     document.body.style.overflow = 'auto';
 }
 
-// Add click events to project cards
-document.querySelectorAll('.project-card, .project-card-new').forEach(card => {
-    card.addEventListener('click', function() {
-        const projectKey = this.getAttribute('data-project');
-        openModal(projectKey);
-    });
-});
-
-// Close modal when clicking outside
-document.getElementById('projectModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeModal();
-    }
-});
-
-// Close modal with ESC key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeModal();
-    }
-});
-
-// Update current year to 2025
-document.getElementById('currentYear').textContent = '2025';
-
 // Language switch functions
-
-// Desktop dropdown functions
 function toggleLanguageDropdown() {
     const dropdown = document.getElementById('languageDropdown');
     const btn = document.querySelector('.language-dropdown-btn');
@@ -225,47 +251,96 @@ function selectLanguage(language, element) {
     document.getElementById('languageDropdown').classList.remove('show');
     document.querySelector('.language-dropdown-btn').classList.remove('active');
     
-    // Language switch logic
-    if (language.includes('BR')) {
-        window.location.href = 'index.html';
-    } else if (language.includes('US')) {
-        window.location.href = 'index-en.html';
-    }
+    const newLang = language.includes('BR') ? 'pt' : 'en';
+    translatePage(newLang);
+    updateMobileLanguageSwitch(newLang);
 }
 
-// Mobile switch functions
 function switchToEnglish(element) {
     document.querySelector('.language-option.active').classList.remove('active');
     element.classList.add('active');
-    window.location.href = 'index-en.html';
+    translatePage('en');
+    document.getElementById('currentLanguage').innerHTML = '<span class="flag-icon flag-us"></span>US';
 }
 
 function switchToPortuguese(element) {
     document.querySelector('.language-option.active').classList.remove('active');
     element.classList.add('active');
-    window.location.href = 'index.html';
+    translatePage('pt');
+    document.getElementById('currentLanguage').innerHTML = '<span class="flag-icon flag-br"></span>BR';
 }
 
-// Close dropdown when clicking outside
-document.addEventListener('click', function(event) {
-    const dropdown = document.querySelector('.language-dropdown');
-    if (dropdown && !dropdown.contains(event.target)) {
-        document.getElementById('languageDropdown').classList.remove('show');
-        document.querySelector('.language-dropdown-btn').classList.remove('active');
-    }
-});
-
-// Close hamburger menu when clicking outside
-document.addEventListener('click', function(event) {
-    const navbar = document.querySelector('.navbar-collapse');
-    const toggler = document.querySelector('.navbar-toggler');
+function updateMobileLanguageSwitch(language) {
+    const mobileOptions = document.querySelectorAll('.language-option');
+    mobileOptions.forEach(option => option.classList.remove('active'));
     
-    if (navbar && navbar.classList.contains('show') && 
-        !navbar.contains(event.target) && 
-        !toggler.contains(event.target)) {
-        
-        const bsCollapse = new bootstrap.Collapse(navbar, {
-            hide: true
-        });
+    if (language === 'pt') {
+        mobileOptions[0].classList.add('active');
+    } else {
+        mobileOptions[1].classList.add('active');
     }
+}
+
+// Event listeners
+function initEventListeners() {
+    // Scroll events
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', onNavScroll, { passive: true });
+    
+    // Project cards
+    document.addEventListener('click', function(e) {
+        const projectCard = e.target.closest('.project-card, .project-card-new');
+        if (projectCard) {
+            const projectKey = projectCard.getAttribute('data-project');
+            openModal(projectKey);
+        }
+    });
+    
+    // Modal events
+    document.getElementById('projectModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.language-dropdown');
+        if (dropdown && !dropdown.contains(event.target)) {
+            document.getElementById('languageDropdown').classList.remove('show');
+            document.querySelector('.language-dropdown-btn').classList.remove('active');
+        }
+    });
+    
+    // Close hamburger menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const navbar = document.querySelector('.navbar-collapse');
+        const toggler = document.querySelector('.navbar-toggler');
+        
+        if (navbar && navbar.classList.contains('show') && 
+            !navbar.contains(event.target) && 
+            !toggler.contains(event.target)) {
+            
+            const bsCollapse = new bootstrap.Collapse(navbar, { hide: true });
+        }
+    });
+}
+
+// Initialize everything
+document.addEventListener('DOMContentLoaded', function() {
+    // Store original content
+    storeOriginalContent();
+    
+    // Initialize features
+    initSmoothScrolling();
+    initScrollAnimations();
+    initEventListeners();
+    
+    // Set current year
+    document.getElementById('currentYear').textContent = '2025';
+    
+    // Initial page setup (already in Portuguese)
+    updateActiveNavLink();
 });
