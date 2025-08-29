@@ -6,7 +6,7 @@
     --dark-bg: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
     --text-muted: rgba(255, 255, 255, 0.5);
@@ -50,19 +50,19 @@ body::before {
 /* Glass Effects */
 .glass-effect {
     background: var(--glass-bg);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
 }
 
-/* Navbar */
+/* Navbar - Otimizado */
 .navbar {
     background: var(--glass-bg) !important;
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
     padding: 1rem 0;
     position: fixed !important;
@@ -75,26 +75,26 @@ body::before {
     background: rgba(255, 255, 255, 0.08) !important;
 }
 
-/* Cards */
+/* Cards - Otimizado */
 .card {
     background: var(--glass-bg);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     border: 1px solid var(--glass-border);
     color: var(--text-primary);
-    box-shadow: var(--glass-shadow);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    will-change: transform;
 }
 
 .card:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translate3d(0, -8px, 0) scale(1.02);
     background: rgba(255, 255, 255, 0.08);
     box-shadow: 
-        var(--glass-shadow),
-        0 0 30px rgba(255, 255, 255, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        0 0 20px rgba(255, 255, 255, 0.05);
 }
 
 /* Logo MF */
@@ -110,13 +110,13 @@ body::before {
     font-size: 1.2rem;
     color: white;
     text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
     box-shadow: 
         0 4px 15px rgba(var(--primary-rgb), 0.4),
-        0 2px 4px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
+    will-change: transform;
 }
 
 .logo-mf::before {
@@ -131,11 +131,10 @@ body::before {
 }
 
 .logo-mf:hover {
-    transform: translateY(-4px) scale(1.1);
+    transform: translate3d(0, -4px, 0) scale(1.1);
     box-shadow: 
         0 8px 30px rgba(var(--primary-rgb), 0.6),
-        0 4px 8px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        0 4px 8px rgba(0, 0, 0, 0.2);
     color: white;
 }
 
@@ -168,7 +167,7 @@ body::before {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-/* Hero Section */
+/* Hero Section - Otimizado */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -189,10 +188,14 @@ body::before {
     height: 150%;
     background: 
         radial-gradient(circle at 20% 50%, rgba(var(--primary-rgb), 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.08) 0%, transparent 50%),
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="0.5" fill="rgba(255,255,255,0.03)"/></svg>') repeat;
-    animation: heroFloat 40s infinite linear;
+        radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.08) 0%, transparent 50%);
+    animation: heroFloat 60s linear infinite;
+    animation-play-state: paused;
     z-index: 1;
+}
+
+.hero:hover::before {
+    animation-play-state: running;
 }
 
 @keyframes heroFloat {
@@ -218,7 +221,7 @@ body::before {
     z-index: 2;
 }
 
-/* Profile */
+/* Profile - Otimizado */
 .profile-container {
     position: relative;
     width: 100%;
@@ -237,8 +240,8 @@ body::before {
             rgba(0, 184, 212, 0.2) 35%, 
             rgba(0, 212, 170, 0.15) 70%, 
             rgba(0, 184, 212, 0.1) 100%);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border: 2px solid rgba(0, 212, 170, 0.15);
     border-radius: 50%;
     display: flex;
@@ -248,15 +251,13 @@ body::before {
     overflow: hidden;
     box-shadow: 
         0 20px 40px rgba(0, 0, 0, 0.3),
-        0 0 80px rgba(0, 212, 170, 0.25),
-        0 0 40px rgba(0, 184, 212, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    animation: profileGlow 4s ease-in-out infinite alternate;
+        0 0 60px rgba(0, 212, 170, 0.2);
+    animation: profileGlow 6s ease-in-out infinite alternate;
 }
 
 @keyframes profileGlow {
-    0% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(var(--primary-rgb), 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
-    100% { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 120px rgba(var(--primary-rgb), 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+    0% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 60px rgba(var(--primary-rgb), 0.2); }
+    100% { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 80px rgba(var(--primary-rgb), 0.3); }
 }
 
 .profile-circle::before {
@@ -268,7 +269,12 @@ body::before {
     height: 200%;
     background: 
         conic-gradient(from 0deg, transparent, rgba(var(--primary-rgb), 0.1), transparent 30%);
-    animation: profileSpin 20s linear infinite;
+    animation: profileSpin 30s linear infinite;
+    animation-play-state: paused;
+}
+
+.profile-circle:hover::before {
+    animation-play-state: running;
 }
 
 @keyframes profileSpin {
@@ -283,10 +289,9 @@ body::before {
     border: 3px solid rgba(255, 255, 255, 0.2);
     position: relative;
     z-index: 2;
-    transition: all 0.4s ease;
-    box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    will-change: transform;
 }
 
 .profile-img:hover {
@@ -338,12 +343,14 @@ body::before {
     text-decoration: none;
     transition: all 0.3s ease;
     font-size: 1.2rem;
+    will-change: transform;
 }
 
 .social-link:hover {
     border-color: var(--primary-color);
     color: var(--primary-color);
     background: rgba(0, 212, 170, 0.1);
+    transform: scale(1.1);
 }
 
 /* Hire Button */
@@ -360,12 +367,13 @@ body::before {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
+    will-change: transform;
 }
 
 .btn-hire:hover {
     background: var(--primary-color);
     color: white;
-    transform: translateY(-2px);
+    transform: translate3d(0, -2px, 0);
     box-shadow: 0 10px 20px rgba(0, 212, 170, 0.3);
 }
 
@@ -398,30 +406,27 @@ section {
     background: var(--primary-color);
 }
 
-/* Project Cards */
+/* Project Cards - Otimizado */
 .project-card-new {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 20px;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
     cursor: pointer;
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.12),
-        0 2px 8px rgba(0, 0, 0, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     position: relative;
     height: 100%;
+    will-change: transform;
 }
 
 .project-card-new:hover {
-    transform: translateY(-12px) scale(1.03);
+    transform: translate3d(0, -12px, 0) scale(1.03);
     box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.25),
-        0 8px 32px rgba(0, 212, 170, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        0 20px 40px rgba(0, 0, 0, 0.25),
+        0 8px 32px rgba(0, 212, 170, 0.15);
     border-color: rgba(0, 212, 170, 0.4);
     background: linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 184, 212, 0.05) 100%);
 }
@@ -450,7 +455,7 @@ section {
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.3s ease;
     border-radius: 16px;
 }
 
@@ -462,7 +467,6 @@ section {
     font-size: 2.8rem;
     color: white;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
 }
 
 .project-content-new {
@@ -497,6 +501,7 @@ section {
     font-weight: 500;
     transition: transform 0.2s ease;
     font-size: 0.9rem;
+    will-change: transform;
 }
 
 .skill-item:hover {
@@ -524,6 +529,7 @@ section {
     font-weight: 500;
     transition: all 0.3s ease;
     font-size: 0.9rem;
+    will-change: transform;
 }
 
 .language-item:hover {
@@ -554,7 +560,7 @@ section {
     background: var(--card-bg);
     padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     border: 1px solid var(--border-color);
 }
 
@@ -589,6 +595,7 @@ section {
     text-decoration: none;
     font-size: 1.2rem;
     transition: all 0.3s ease;
+    will-change: transform;
 }
 
 .contact-social-link:hover {
@@ -615,7 +622,7 @@ section {
     color: #888888 !important;
 }
 
-/* Project Modal */
+/* Project Modal - Otimizado */
 .project-modal {
     display: none;
     position: fixed;
@@ -637,8 +644,8 @@ section {
 
 .modal-content {
     background: rgba(13, 12, 34, 0.95);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     max-width: 900px;
@@ -646,10 +653,7 @@ section {
     position: relative;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.5),
-        0 0 100px rgba(0, 212, 170, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
 .modal-close {
@@ -704,12 +708,12 @@ section {
 
 .detail-item {
     background: var(--glass-bg);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     border: 1px solid var(--glass-border);
     padding: 1rem;
     border-radius: 8px;
-    box-shadow: var(--glass-shadow);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .detail-item h6 {
@@ -744,6 +748,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    will-change: transform;
 }
 
 .process-image img {
@@ -770,6 +775,7 @@ section {
     transition: all 0.3s ease;
     cursor: pointer;
     margin-top: 2rem;
+    will-change: transform;
 }
 
 .modal-close-btn:hover {
@@ -789,16 +795,17 @@ section {
     font-weight: 500;
     font-size: 0.95rem;
     transition: all 0.3s ease;
+    will-change: transform;
 }
 
 .curriculum-btn:hover {
     background: var(--primary-color);
     color: white;
-    transform: translateY(-2px);
+    transform: translate3d(0, -2px, 0);
     box-shadow: 0 5px 15px rgba(0, 212, 170, 0.3);
 }
 
-/* Mobile Fixed Close Button for Modal */
+/* Mobile Fixed Close Button for Modal - Otimizado */
 .modal-close-mobile {
     display: none;
     position: fixed;
@@ -808,8 +815,8 @@ section {
     z-index: 10001;
     padding: 15px 30px;
     background: var(--glass-bg);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border: 2px solid var(--glass-border);
     color: var(--text-primary);
     border-radius: 50px;
@@ -817,10 +824,9 @@ section {
     font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 
-        var(--glass-shadow),
-        0 0 20px rgba(0, 212, 170, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
     min-width: 180px;
+    will-change: transform;
 }
 
 .modal-close-mobile:hover {
@@ -828,9 +834,7 @@ section {
     border-color: var(--primary-color);
     color: var(--primary-color);
     transform: translateX(-50%) scale(1.05);
-    box-shadow: 
-        var(--glass-shadow),
-        0 0 30px rgba(0, 212, 170, 0.4);
+    box-shadow: 0 12px 35px rgba(0, 212, 170, 0.4);
 }
 
 .modal-close-mobile i {
@@ -979,8 +983,8 @@ section {
 /* Footer */
 footer {
     background: var(--glass-bg);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     color: var(--text-primary);
     padding: 2rem 0;
     text-align: center;
