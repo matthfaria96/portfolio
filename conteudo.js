@@ -54,6 +54,8 @@ const translations = {
         computerScienceDegree: "Bachelor's Degree, Computer Science",
         technicalCourse: "Technical Course, IT Technician",
         coursesTitle: "Courses & Certifications",
+        figma: "Hi-Fi Designs and Prototypes in Figma",
+        uxdesign: "Foundations of UX Design",
         mysqlCourse: "MySQL Course",
         networkArchitecture: "Network Architecture",
         databaseSQL: "Database and SQL",
