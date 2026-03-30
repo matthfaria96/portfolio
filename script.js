@@ -18,11 +18,12 @@ function storeOriginalContent() {
         originalContent[key] = element.textContent;
     });
     
-    // Store project title
-    const projectTitleBussola = document.querySelector('[data-project-title="bussola-talentos"]');
-    if (projectTitleBussola) {
-        originalContent['bussolaTitle'] = projectTitleBussola.textContent;
-    }
+    // Store project titles dynamically
+    const titleElements = document.querySelectorAll('[data-project-title]');
+    titleElements.forEach(element => {
+        const key = element.getAttribute('data-project-title') + 'Title';
+        originalContent[key] = element.textContent;
+    });
 }
 
 // Translation function
@@ -38,11 +39,14 @@ function translatePage(language) {
             }
         });
         
-        // Restore project title
-        const projectTitleBussola = document.querySelector('[data-project-title="bussola-talentos"]');
-        if (projectTitleBussola && originalContent['bussolaTitle']) {
-            projectTitleBussola.textContent = originalContent['bussolaTitle'];
-        }
+        // Restore project titles
+        const titleElements = document.querySelectorAll('[data-project-title]');
+        titleElements.forEach(element => {
+            const projKey = element.getAttribute('data-project-title');
+            if (originalContent[projKey + 'Title']) {
+                element.textContent = originalContent[projKey + 'Title'];
+            }
+        });
     } else if (language === 'en' && translations[language]) {
         // Apply English translations
         elements.forEach(element => {
@@ -52,11 +56,14 @@ function translatePage(language) {
             }
         });
         
-        // Update project title
-        const projectTitleBussola = document.querySelector('[data-project-title="bussola-talentos"]');
-        if (projectTitleBussola && translations[language].projects['bussola-talentos']) {
-            projectTitleBussola.textContent = translations[language].projects['bussola-talentos'].title;
-        }
+        // Update project titles
+        const titleElements = document.querySelectorAll('[data-project-title]');
+        titleElements.forEach(element => {
+            const projKey = element.getAttribute('data-project-title');
+            if (translations[language].projects && translations[language].projects[projKey]) {
+                element.textContent = translations[language].projects[projKey].title;
+            }
+        });
     }
     
     // Update document language
@@ -160,8 +167,12 @@ function openModal(projectKey) {
 
     const images = {
         'school-task': 'projeto1.png',
-        'bussola-talentos': 'projeto2.png',
-        'e-planner': 'projeto3.png'
+        'sua-marca': 'projeto2.png',
+        'beleza-rara': 'projeto3.png',
+        'be-hard': 'projeto4.png',
+        'e-planner': 'projeto5.png',
+        'vtech': 'projeto6.png',
+        'popclick': 'projeto7.png'
     };
 
     // Update modal content
@@ -182,13 +193,12 @@ function openModal(projectKey) {
         document.getElementById('modalWireframeText').textContent = project.wireframeText;
         document.getElementById('modalPrototypeText').textContent = project.prototypeText;
     } else {
-        // Keep original Portuguese texts
-        document.getElementById('modalProblemText').textContent = 'Escolas enfrentavam dificuldades com sistemas de comunicação fragmentados, resultando em informações perdidas e coordenação deficiente entre pais e professores.';
-        document.getElementById('modalJourneyText').textContent = 'Mapeamos todo o ecossistema educacional desde a matrícula até a formatura, identificando pontos-chave de contato e pontos problemáticos.';
-        document.getElementById('modalHypothesesText').textContent = 'Nossa hipótese era que uma plataforma unificada reduziria as lacunas de comunicação em 50% e aumentaria o engajamento dos pais.';
-        document.getElementById('modalIdeationText').textContent = 'Desenvolvemos soluções incluindo mensagens em tempo real, acompanhamento de progresso e notificações automatizadas.';
-        document.getElementById('modalWireframeText').textContent = 'Criamos wireframes de baixa fidelidade focando em navegação intuitiva e hierarquia clara de informações.';
-        document.getElementById('modalPrototypeText').textContent = 'Desenvolvemos protótipos de alta fidelidade com elementos interativos e testes abrangentes de usuário.';
+        document.getElementById('modalProblemText').textContent = project.problemText || 'Informação não disponível.';
+        document.getElementById('modalJourneyText').textContent = project.journeyText || 'Informação não disponível.';
+        document.getElementById('modalHypothesesText').textContent = project.hypothesesText || 'Informação não disponível.';
+        document.getElementById('modalIdeationText').textContent = project.ideationText || 'Informação não disponível.';
+        document.getElementById('modalWireframeText').textContent = project.wireframeText || 'Informação não disponível.';
+        document.getElementById('modalPrototypeText').textContent = project.prototypeText || 'Informação não disponível.';
     }
 
     // Update process images based on project
@@ -214,27 +224,101 @@ function getPortugueseProjectData(projectKey) {
     const ptProjects = {
         'school-task': {
             title: 'School Task',
-            description: 'Plataforma digital desenvolvida para gestão educacional, facilitando a comunicação entre professores, alunos e pais com interface intuitiva e recursos colaborativos.',
-            technologies: 'React, Node.js, MongoDB, Firebase, Socket.io',
-            duration: '8 meses',
-            team: '5 pessoas (3 devs, 1 designer, 1 PM)',
-            results: 'Adoção por 50+ escolas, melhoria de 60% na comunicação escola-família'
+            description: 'Aplicativo para gerenciar tarefas e atividades usando o método do Rafael Medeiros com interface intuitiva.',
+            technologies: 'Figma, React, Node.js',
+            duration: '4 meses',
+            team: 'Equipe dedicada',
+            results: 'Aumento na produtividade dos usuários',
+            problemText: 'Dificuldade em gerir tarefas do dia a dia de forma eficiente.',
+            journeyText: 'Mapeamento completo do método do Rafael Medeiros para aplicação digital.',
+            hypothesesText: 'Uma interface que guie o usuário pelo método aumenta o engajamento.',
+            ideationText: 'Criação de fluxos adaptados à metodologia proposta.',
+            wireframeText: 'Estruturação focada em simplicidade e usabilidade.',
+            prototypeText: 'Protótipo iterado com usuários para validação final.'
         },
-        'bussola-talentos': {
-            title: 'Bússola dos Talentos',
-            description: 'Sistema de orientação vocacional que conecta estudantes às suas aptidões profissionais através de testes personalizados e análises comportamentais avançadas.',
-            technologies: 'Vue.js, Python, Django, PostgreSQL, TensorFlow',
-            duration: '10 meses',
-            team: '6 pessoas (3 devs, 2 designers, 1 data scientist)',
-            results: 'Orientação de 10k+ estudantes, 85% de satisfação nas escolhas vocacionais'
+        'sua-marca': {
+            title: 'Sua Marca Ponto Com',
+            description: 'Aplicativo para venda de produtos para barbearias (B2B/CNPJs) com ecossistema completo de cursos e suporte.',
+            technologies: 'Figma, React Native',
+            duration: '6 meses',
+            team: 'Equipe multidisciplinar',
+            results: 'Ecossistema unificado para barbearias',
+            problemText: 'Falta de plataforma centralizada para compra de produtos B2B e capacitação em barbearias.',
+            journeyText: 'Análise da jornada do profissional na busca por produtos e especializações.',
+            hypothesesText: 'Unir loja B2B e cursos fideliza o cliente e aumenta a receita.',
+            ideationText: 'Desenho de um ecossistema fechado com clube de vantagens.',
+            wireframeText: 'Wireframes funcionais de e-commerce e ambiente de vídeos.',
+            prototypeText: 'Protótipo de alta fidelidade validado com diferentes barbeiros.'
+        },
+        'beleza-rara': {
+            title: 'Beleza Rara',
+            description: 'App para venda de produtos cosméticos, assinatura de fidelidade e acesso a cursos e dicas de beleza.',
+            technologies: 'Figma, Flutter',
+            duration: '5 meses',
+            team: 'Equipe de produto',
+            results: 'Aumento expressivo na retenção do clube de assinatura',
+            problemText: 'Clientes compravam produtos mas não sabiam extrair o melhor uso deles.',
+            journeyText: 'Compreensão da jornada de compra focada em cosméticos e skincare.',
+            hypothesesText: 'Clube de assinatura ancorado a cursos aumenta retenção diária.',
+            ideationText: 'Concepção do loop de compras e recompensas de conhecimento.',
+            wireframeText: 'Layouts guiados pela estética visual do ramo e experiência premium.',
+            prototypeText: 'Protótipos navegáveis validados em painéis com o foco target.'
+        },
+        'be-hard': {
+            title: 'Be Hard',
+            description: 'App de acompanhamento de exercícios, permitindo uso autônomo da própria evolução ou auxílio de personal trainer.',
+            technologies: 'Figma, Swift, Kotlin',
+            duration: '7 meses',
+            team: 'Equipe de desenvolvimento e especialistas em saúde',
+            results: 'Lançamento com match rápido entre alunos e instrutores',
+            problemText: 'A falta de motivação e acompanhamento estruturado para quem treina de forma independente.',
+            journeyText: 'Mapeamento das frustrações e ganhos durante planos de treinamento físicos.',
+            hypothesesText: 'Plataforma com modelo freemium converte usuários ativos em clientes de personal trainers.',
+            ideationText: 'Fluxo focado em treinos diários gamificados e visibilidade profissional.',
+            wireframeText: 'Wireframes evidenciando a fácil leitura do progresso numérico.',
+            prototypeText: 'Protótipo dinâmico aprovado por especialistas fitness.'
         },
         'e-planner': {
-            title: 'E-planner',
-            description: 'Aplicativo de planejamento pessoal e profissional com recursos de agenda inteligente, definição de metas e acompanhamento de progresso em tempo real.',
-            technologies: 'Flutter, Firebase, Node.js, MongoDB, Google Calendar API',
-            duration: '6 meses',
-            team: '4 pessoas (2 devs, 1 designer, 1 PM)',
-            results: 'Aumento de 70% na produtividade dos usuários, 4.7★ rating nas app stores'
+            title: 'E-planner para Mulheres',
+            description: 'Aplicativo feito especialmente para agendar e gerenciar tarefas de forma minimalista, simples e direta.',
+            technologies: 'Flutter, Firebase',
+            duration: '3 meses',
+            team: 'Designers e Front-End',
+            results: 'Experiência simplificada para aumento da retenção',
+            problemText: 'Excesso de informações nos aplicativos atuais atrapalha a organização visual rápida.',
+            journeyText: 'Acompanhamento do hábito diário de planejamento e anotação focado na carga mental feminina.',
+            hypothesesText: 'Uma interface limpa e focada no agora traz mais aderência a longo prazo.',
+            ideationText: 'Conceitualização da eliminação de etapas para criação rápida de lembretes e planners.',
+            wireframeText: 'Visual minimalista priorizando áreas de respiro e categorização rápida.',
+            prototypeText: 'Protótipo testado por usuárias focado na agilidade cognitiva diária.'
+        },
+        'vtech': {
+            title: 'VTech',
+            description: 'Sistema interno de gerenciamento para empresa especialista em válvulas e processos industriais.',
+            technologies: 'Figma, Vue.js, Node.js',
+            duration: '8 meses',
+            team: 'Time de tecnologia B2B',
+            results: 'Digitalização completa dos fluxos de ERP da VTech',
+            problemText: 'Muitos processos de gestão de projetos de válvulas ainda controlados de forma segmentada.',
+            journeyText: 'Exploração nos bastidores do chão de fábrica para entender o gargalo administrativo.',
+            hypothesesText: 'Solução sob medida integrando os setores acelera o tempo de entrega em 30%.',
+            ideationText: 'Definição das lógicas de permissão, tabelas densas e dashboards industriais.',
+            wireframeText: 'Wireframes para desktop com hierarquias de informação muito detalhadas e objetivas.',
+            prototypeText: 'Homologação assistida nas máquinas e telas internas da empresa.'
+        },
+        'popclick': {
+            title: 'PopClick',
+            description: 'Rede similar a um feed para conectar usuários comuns a grandes empresas, ganhando remuneração por compartilhamento.',
+            technologies: 'Figma, React',
+            duration: '9 meses',
+            team: 'Equipe completa de engenharia e negócios',
+            results: 'Idealizado para campanhas com micro-influenciadores',
+            problemText: 'As grandes empresas não tinham engajamento genuíno que micro-influenciadores comuns oferecem.',
+            journeyText: 'Jornada simultânea entre a corporação (que injeta campanhas) e o usuário final (que divulga).',
+            hypothesesText: 'O modelo de remuneração direta e facilitada incentiva os usuários a compartilharem mídias.',
+            ideationText: 'Processo de feed em scroll e painel simples de lucros do usuário.',
+            wireframeText: 'Simulação completa de um app focado no discovery e feed in-app.',
+            prototypeText: 'Protótipo realista para apresentar funcionamento do modelo de bônus.'
         }
     };
     return ptProjects[projectKey];
@@ -246,15 +330,35 @@ const projectImages = {
         wireframe: 'projeto1.png?w=800&h=400&fit=crop',
         prototype: 'projeto1.png?w=800&h=400&fit=crop'
     },
-    'bussola-talentos': {
-        ideation: 'projeto1.png?w=800&h=400&fit=crop',
-        wireframe: 'projeto1.png?w=800&h=400&fit=crop',
-        prototype: 'projeto1.png?w=800&h=400&fit=crop'
+    'sua-marca': {
+        ideation: 'projeto2.png?w=800&h=400&fit=crop',
+        wireframe: 'projeto2.png?w=800&h=400&fit=crop',
+        prototype: 'projeto2.png?w=800&h=400&fit=crop'
+    },
+    'beleza-rara': {
+        ideation: 'projeto3.png?w=800&h=400&fit=crop',
+        wireframe: 'projeto3.png?w=800&h=400&fit=crop',
+        prototype: 'projeto3.png?w=800&h=400&fit=crop'
+    },
+    'be-hard': {
+        ideation: 'projeto4.png?w=800&h=400&fit=crop',
+        wireframe: 'projeto4.png?w=800&h=400&fit=crop',
+        prototype: 'projeto4.png?w=800&h=400&fit=crop'
     },
     'e-planner': {
-        ideation: 'projeto1.png?w=800&h=400&fit=crop',
-        wireframe: 'projeto1.png?w=800&h=400&fit=crop',
-        prototype: 'projeto1.png?w=800&h=400&fit=crop'
+        ideation: 'projeto5.png?w=800&h=400&fit=crop',
+        wireframe: 'projeto5.png?w=800&h=400&fit=crop',
+        prototype: 'projeto5.png?w=800&h=400&fit=crop'
+    },
+    'vtech': {
+        ideation: 'projeto6.png?w=800&h=400&fit=crop',
+        wireframe: 'projeto6.png?w=800&h=400&fit=crop',
+        prototype: 'projeto6.png?w=800&h=400&fit=crop'
+    },
+    'popclick': {
+        ideation: 'projeto7.png?w=800&h=400&fit=crop',
+        wireframe: 'projeto7.png?w=800&h=400&fit=crop',
+        prototype: 'projeto7.png?w=800&h=400&fit=crop'
     }
 };
 
