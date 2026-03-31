@@ -1123,6 +1123,11 @@ footer {
         display: none;
     }
 
+    /* Project Cards Mobile Fix */
+    .project-image-new {
+        height: 250px;
+    }
+
     /* General Mobile Section Spacing */
     section {
         padding: 3rem 0;
