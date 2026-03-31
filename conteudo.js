@@ -3,16 +3,16 @@ const translations = {
         // Navbar
         navHome: "Home",
         navProjects: "Projects",
-        navSkills: "Skills", 
+        navSkills: "Skills",
         navEducation: "Education",
         navExperience: "Experience",
         navContact: "Contact",
-        
+
         // Hero Section
         heroSubtitle: "UI/UX Designer",
         heroDescription: "I'm a UI/UX and Product Design professional, bringing expertise that combines design, technology, and project management. My experience merges visual creation, frontend development, and multimedia editing, enabling complete digital solution delivery.",
         heroButton: "Contact Me",
-        
+
         // Projects Section
         projectsTitle: "Projects",
         projectsSubtitle: "My Featured Projects",
@@ -23,27 +23,27 @@ const translations = {
         projectEPlanner: "Minimalist task scheduling app designed for women",
         projectVtech: "Internal management system for a valves company",
         projectPopclick: "Network for users to share content from companies to earn rewards",
-        
+
         // My Work Section
         myWorkTitle: "My Work Approach",
         conceptToDesignTitle: "From Concept to Design",
         conceptToDesignSubtitle: "Creativity in Action",
         conceptToDesignText: "I transform abstract ideas into concrete visual solutions. From the first sketch on paper to interactive prototypes in Figma, I lead the entire creative process. I conduct user research, define personas, create wireframes, and develop design systems that ensure consistency and excellence in every pixel.",
-        
+
         developmentPromotionTitle: "Development & Promotion",
         developmentPromotionSubtitle: "Complete Delivery",
         developmentPromotionText: "I complement design work by developing landing pages to showcase created products. I produce visual materials for social media and promotional campaigns, ensuring brand visual consistency. I monitor performance metrics and implement improvements based on user behavior, ensuring the design achieves its conversion objectives.",
-        
+
         // Skills Section
         skillsTitle: "Skills & Education",
         specializationsTitle: "Specializations",
         designMediaTitle: "Design & Media",
-        designMediaText: "Proficiency in Figma, Photoshop, and Affinity Designer for interfaces, visual identities, and graphic materials. Also experienced in video editing with DaVinci Resolve, Sony Vegas, and CapCut.",
+        designMediaText: "Proficiency in Figma, Figjam, Photoshop, and Affinity Designer for interfaces, visual identities, and graphic materials. Also experienced in video editing with DaVinci Resolve, Adobe Premiere, and CapCut.",
         technologyTitle: "Technology",
         technologyText: "Practical knowledge in Frontend (HTML, CSS, JavaScript, and Bootstrap) for website and landing page creation. Additionally, extensive knowledge in hardware and software technical support.",
         projectManagementTitle: "Project Management",
         projectManagementText: "Organization and team collaboration using GitHub, Jira, and Trello",
-        
+
         coreCompetenciesTitle: "Core Competencies",
         hardSkillsTitle: "Hard Skills",
         softSkillsTitle: "Soft Skills",
@@ -51,7 +51,7 @@ const translations = {
         languagePortuguese: "Portuguese (Native)",
         languageEnglish: "English (Advanced)",
         languageHebrew: "Hebrew (Basic)",
-        
+
         // Education Section
         educationTitle: "Education",
         academicBackgroundTitle: "Academic Background",
@@ -66,7 +66,7 @@ const translations = {
         gitGithub: "Git and GitHub for Beginners",
         marketingManagement: "Marketing Management",
         programmingLogic: "Programming Logic",
-        
+
         // Experience Section
         experienceTitle: "Professional Experience",
         uiDesigner: "UI Designer",
@@ -75,14 +75,14 @@ const translations = {
         socialMediaManager: "Social Media Manager",
         graphicDesigner: "Graphic Designer",
         cardTagDesigner: "Card and Tag Designer",
-        
+
         uiDesignerText: "Development of modern and responsive user interfaces for corporate systems. Creation of reusable components and design systems maintenance. Direct collaboration with development teams to ensure implementation fidelity.",
         itTechnicianText: "Responsible for IT infrastructure maintenance, technical user support, and corporate systems management. Implementation of technological solutions for industrial process optimization and local network administration.",
         frontendDeveloperText: "Development of responsive web applications using modern technologies like React, JavaScript, and CSS. Interface implementation based on Figma designs, performance optimization, and REST API integration.",
         socialMediaManagerText: "Complete management of digital strategies for diverse clients. Visual content creation, advertising campaign planning, metrics analysis, and organic social media growth. Creative team coordination and client relationship management.",
         graphicDesignerText: "Creation of graphic materials for printing including business cards, folders, banners, and corporate stationery. Visual identity development and file preparation for industrial graphic production.",
         cardTagDesignerText: "Specialization in developing promotional cards and commercial tags for diverse products. Creation of attractive layouts respecting technical printing and finishing limitations. High-demand work with optimized deadlines.",
-        
+
         // Contact Section
         contactTitle: "Let's Talk?",
         contactSubtitle: "Get in touch to discuss projects or opportunities",
@@ -90,10 +90,10 @@ const translations = {
         resumeText: "I provide my resume in standard PDF format, containing detailed information about my academic background, professional experience, and technical competencies.",
         viewResumeBtn: "View Resume",
         connectTitle: "Connect With Me",
-        
+
         // Footer
         footerText: "All rights reserved.",
-        
+
         // Modal
         modalTechnologies: "Technologies",
         modalDuration: "Duration",
@@ -106,7 +106,7 @@ const translations = {
         modalWireframe: "Wireframe",
         modalPrototype: "Final Prototype",
         modalClose: "Close",
-        
+
         // Project Data
         projects: {
             'school-task': {

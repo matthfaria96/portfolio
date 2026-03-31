@@ -17,7 +17,7 @@ function storeOriginalContent() {
         const key = element.getAttribute('data-translate');
         originalContent[key] = element.textContent;
     });
-    
+
     // Store project titles dynamically
     const titleElements = document.querySelectorAll('[data-project-title]');
     titleElements.forEach(element => {
@@ -29,7 +29,7 @@ function storeOriginalContent() {
 // Translation function
 function translatePage(language) {
     const elements = document.querySelectorAll('[data-translate]');
-    
+
     if (language === 'pt') {
         // Restore original Portuguese content
         elements.forEach(element => {
@@ -38,7 +38,7 @@ function translatePage(language) {
                 element.textContent = originalContent[key];
             }
         });
-        
+
         // Restore project titles
         const titleElements = document.querySelectorAll('[data-project-title]');
         titleElements.forEach(element => {
@@ -55,7 +55,7 @@ function translatePage(language) {
                 element.textContent = translations[language][key];
             }
         });
-        
+
         // Update project titles
         const titleElements = document.querySelectorAll('[data-project-title]');
         titleElements.forEach(element => {
@@ -65,7 +65,7 @@ function translatePage(language) {
             }
         });
     }
-    
+
     // Update document language
     document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'en';
     currentLanguage = language;
@@ -73,7 +73,7 @@ function translatePage(language) {
 
 // Optimized smooth scrolling
 function initSmoothScrolling() {
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         const anchor = e.target.closest('a[href^="#"]');
         if (anchor) {
             e.preventDefault();
@@ -92,7 +92,7 @@ function initSmoothScrolling() {
 let ticking = false;
 function updateNavbar() {
     const navbar = document.querySelector('.navbar');
-    navbar.style.backgroundColor = window.scrollY > 50 ? 
+    navbar.style.backgroundColor = window.scrollY > 50 ?
         'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)';
     ticking = false;
 }
@@ -110,7 +110,7 @@ const observerOptions = {
     rootMargin: '0px 0px -50px 0px'
 };
 
-const observer = new IntersectionObserver(function(entries) {
+const observer = new IntersectionObserver(function (entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
@@ -135,7 +135,7 @@ function updateActiveNavLink() {
     let current = '';
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         if (window.pageYOffset >= sectionTop - 200) {
@@ -159,10 +159,10 @@ function onNavScroll() {
 // Project modal functions
 function openModal(projectKey) {
     const isEnglish = currentLanguage === 'en';
-    const project = isEnglish ? 
-        translations.en.projects[projectKey] : 
+    const project = isEnglish ?
+        translations.en.projects[projectKey] :
         getPortugueseProjectData(projectKey);
-    
+
     if (!project) return;
 
     const images = {
@@ -210,7 +210,7 @@ function openModal(projectKey) {
 
     document.getElementById('projectModal').classList.add('active');
     document.body.style.overflow = 'hidden';
-    
+
     // Always scroll to top when opening modal - FIXED SCROLL ISSUE
     setTimeout(() => {
         const modalContent = document.querySelector('.modal-content');
@@ -225,21 +225,21 @@ function getPortugueseProjectData(projectKey) {
         'school-task': {
             title: 'School Task',
             description: 'Aplicativo para gerenciar tarefas e atividades usando o método do Rafael Medeiros com interface intuitiva.',
-            technologies: 'Figma, React, Node.js',
-            duration: '4 meses',
-            team: 'Equipe dedicada',
+            technologies: 'Figma, Ionic, Firebase, AWS e Google Cloud',
+            duration: 'Em andamento desde 2025',
+            team: 'Equipe de 1 UX e 2 programadores',
             results: 'Aumento na produtividade dos usuários',
-            problemText: 'Dificuldade em gerir tarefas do dia a dia de forma eficiente.',
-            journeyText: 'Mapeamento completo do método do Rafael Medeiros para aplicação digital.',
-            hypothesesText: 'Uma interface que guie o usuário pelo método aumenta o engajamento.',
-            ideationText: 'Criação de fluxos adaptados à metodologia proposta.',
-            wireframeText: 'Estruturação focada em simplicidade e usabilidade.',
-            prototypeText: 'Protótipo iterado com usuários para validação final.'
+            problemText: 'O principal desafio inicial consistia em transpor uma metodologia de ensino já validada (método Rafael Medeiros) para um aplicativo. Focamos em um público-alvo muito bem definido: alunos engajados que já possuíam alta familiaridade com os conceitos. O objetivo era criar uma ferramenta que não apenas complementasse a educação, mas organizasse a vida do usuário sem parecer distante da comunidade.',
+            journeyText: 'Para compreender profundamente o desafio, realizamos uma imersão completa no conteúdo educativo. Através da análise de vídeos, palestras e reuniões de alinhamento com o cliente, mapeamos cada etapa do método original. Esse processo permitiu identificar dores e pontos focais de interação.',
+            hypothesesText: 'Nossa hipótese principal baseou-se na ideia de que uma experiência guiada, passo a passo, seria fundamental para a adesão contínua. Acreditávamos que se o aplicativo mimetizasse em tela a didática ensinada nas aulas — servindo como um "tutor no bolso" focado em prática e atividades da vida real — a taxa de retenção seria massiva. Traduzir palestras densas em interações modulares resultaria em menor carga cognitiva e maior índice de progresso.',
+            ideationText: 'Durante a ideação, adotamos uma abordagem ágil. Aproveitamos a arquitetura de base sólida de um projeto interno prévio focado em jornadas (projeto Equilibre), assegurando a viabilidade técnica rápida. Realizamos um forte trabalho de rebranding estrutural: readaptamos esquemas visuais para respirarem a autenticidade da marca Rafael Medeiros. Módulos fundamentais foram reutilizados de forma inteligente — jornadas viraram trilhas de acompanhamento e sistemas antigos de engajamento foram convertidos no núcleo prático da nova plataforma.',
+            wireframeText: 'A herança de estruturas pré-validadas eliminou a necessidade inicial de wireframes básicos (rabiscos no papel ou telas simples). Contudo, durante as rodadas de refinamento junto ao cliente, realizamos um grande pivotamento de produto. Descobriu-se que o foco original no consumo passivo de "cursos e mídias" ofuscaria a real dor dos alunos: a aplicação rigorosa do método no dia a dia. Assim, descartamos essa versão mais acadêmica e refizemos com foco em gestão de tarefas, potencializando o calendário e a produtividade.',
+            prototypeText: 'O resultado entregue em desenvolvimento reflete perfeitamente o desejo do cliente: uma plataforma robusta focada quase integralmente na prática da metodologia. O fluxo enxuto da Versão 1 está operante e gerando valor no mundo real. Paralelamente a isso, numa visão visionária, foi projetado a versão 2.0 no Figma (ilustrada na própria capa deste portfólio) contendo modernizações estéticas e avanços em usabilidade, aguardando maturação financeira para ser programada em código.'
         },
         'sua-marca': {
             title: 'Sua Marca Ponto Com',
             description: 'Aplicativo para venda de produtos para barbearias (B2B/CNPJs) com ecossistema completo de cursos e suporte.',
-            technologies: 'Figma, React Native',
+            technologies: 'Somente em Figma',
             duration: '6 meses',
             team: 'Equipe multidisciplinar',
             results: 'Ecossistema unificado para barbearias',
@@ -326,9 +326,9 @@ function getPortugueseProjectData(projectKey) {
 
 const projectImages = {
     'school-task': {
-        ideation: 'projeto1.png?w=800&h=400&fit=crop',
-        wireframe: 'projeto1.png?w=800&h=400&fit=crop',
-        prototype: 'projeto1.png?w=800&h=400&fit=crop'
+        ideation: 'prints/schooltask1.png?w=800&h=400&fit=crop',
+        wireframe: 'prints/schooltask2.png?w=800&h=400&fit=crop',
+        prototype: 'prints/schooltask3.png?w=800&h=400&fit=crop'
     },
     'sua-marca': {
         ideation: 'projeto2.png?w=800&h=400&fit=crop',
@@ -371,7 +371,7 @@ function closeModal() {
 function toggleLanguageDropdown() {
     const dropdown = document.getElementById('languageDropdown');
     const btn = document.querySelector('.language-dropdown-btn');
-    
+
     dropdown.classList.toggle('show');
     btn.classList.toggle('active');
 }
@@ -380,7 +380,7 @@ function selectLanguage(language, element) {
     document.getElementById('currentLanguage').innerHTML = language;
     document.getElementById('languageDropdown').classList.remove('show');
     document.querySelector('.language-dropdown-btn').classList.remove('active');
-    
+
     const newLang = language.includes('BR') ? 'pt' : 'en';
     translatePage(newLang);
     updateMobileLanguageSwitch(newLang);
@@ -403,7 +403,7 @@ function switchToPortuguese(element) {
 function updateMobileLanguageSwitch(language) {
     const mobileOptions = document.querySelectorAll('.language-option');
     mobileOptions.forEach(option => option.classList.remove('active'));
-    
+
     if (language === 'pt') {
         mobileOptions[0].classList.add('active');
     } else {
@@ -416,61 +416,61 @@ function initEventListeners() {
     // Scroll events
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('scroll', onNavScroll, { passive: true });
-    
+
     // Project cards
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         const projectCard = e.target.closest('.project-card, .project-card-new');
         if (projectCard) {
             const projectKey = projectCard.getAttribute('data-project');
             openModal(projectKey);
         }
     });
-    
+
     // Modal events
-    document.getElementById('projectModal').addEventListener('click', function(e) {
+    document.getElementById('projectModal').addEventListener('click', function (e) {
         if (e.target === this) closeModal();
     });
-    
-    document.addEventListener('keydown', function(e) {
+
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeModal();
     });
-    
+
     // Close dropdown when clicking outside
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         const dropdown = document.querySelector('.language-dropdown');
         if (dropdown && !dropdown.contains(event.target)) {
             document.getElementById('languageDropdown').classList.remove('show');
             document.querySelector('.language-dropdown-btn').classList.remove('active');
         }
     });
-    
+
     // Close hamburger menu when clicking outside
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         const navbar = document.querySelector('.navbar-collapse');
         const toggler = document.querySelector('.navbar-toggler');
-        
-        if (navbar && navbar.classList.contains('show') && 
-            !navbar.contains(event.target) && 
+
+        if (navbar && navbar.classList.contains('show') &&
+            !navbar.contains(event.target) &&
             !toggler.contains(event.target)) {
-            
+
             const bsCollapse = new bootstrap.Collapse(navbar, { hide: true });
         }
     });
 }
 
 // Initialize everything
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Store original content
     storeOriginalContent();
-    
+
     // Initialize features
     initSmoothScrolling();
     initScrollAnimations();
     initEventListeners();
-    
+
     // Set current year
     document.getElementById('currentYear').textContent = '2025';
-    
+
     // Initial page setup (already in Portuguese)
     updateActiveNavLink();
 });
