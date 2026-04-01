@@ -98,7 +98,7 @@ const translations = {
         modalTechnologies: "Technologies",
         modalDuration: "Duration",
         modalTeam: "Team",
-        modalResults: "Results",
+        modalResults: "Objective",
         modalProblem: "The Problem",
         modalJourneyMapping: "Journey Mapping",
         modalHypotheses: "Hypotheses and Uncertainties",
