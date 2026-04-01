@@ -287,9 +287,9 @@ function getPortugueseProjectData(projectKey) {
         'e-planner': {
             title: 'E-planner para Mulheres',
             description: 'Aplicativo feito especialmente para agendar e gerenciar tarefas de forma minimalista, simples e direta.',
-            technologies: 'Flutter, Firebase',
+            technologies: 'Figma',
             duration: '3 meses',
-            team: 'Designers e Front-End',
+            team: '1 UX Designer',
             results: 'Experiência simplificada para aumento da retenção',
             problemText: 'Excesso de informações nos aplicativos atuais atrapalha a organização visual rápida.',
             journeyText: 'Acompanhamento do hábito diário de planejamento e anotação focado na carga mental feminina.',
@@ -301,9 +301,9 @@ function getPortugueseProjectData(projectKey) {
         'vtech': {
             title: 'VTech',
             description: 'Sistema interno de gerenciamento para empresa especialista em válvulas e processos industriais.',
-            technologies: 'Figma, Vue.js, Node.js',
+            technologies: 'Figma e Vue.js',
             duration: '8 meses',
-            team: 'Time de tecnologia B2B',
+            team: '1 UX e 1 dev fullstack',
             results: 'Digitalização completa dos fluxos de ERP da VTech',
             problemText: 'Muitos processos de gestão de projetos de válvulas ainda controlados de forma segmentada.',
             journeyText: 'Exploração nos bastidores do chão de fábrica para entender o gargalo administrativo.',
@@ -315,7 +315,7 @@ function getPortugueseProjectData(projectKey) {
         'popclick': {
             title: 'PopClick',
             description: 'Rede similar a um feed para conectar usuários comuns a grandes empresas, ganhando remuneração por compartilhamento.',
-            technologies: 'Figma, React',
+            technologies: 'Figma, Flutter e Flutterflow',
             duration: '9 meses',
             team: 'Equipe completa de engenharia e negócios',
             results: 'Idealizado para campanhas com micro-influenciadores',
