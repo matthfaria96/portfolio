@@ -65,7 +65,7 @@ const translations = {
         databaseSQL: "Database and SQL",
         gitGithub: "Git and GitHub for Beginners",
         marketingManagement: "Marketing Management",
-        programmingLogic: "Programming Logic",
+        uxDesignCircuit: "Complete UX Training at Design Circuit Course",
 
         // Experience Section
         experienceTitle: "Professional Experience",

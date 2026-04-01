@@ -203,9 +203,15 @@ function openModal(projectKey) {
 
     // Update process images based on project
     if (projectImages[projectKey]) {
-        document.getElementById('modalIdeationImage').innerHTML = `<img src="${projectImages[projectKey].ideation}" alt="Ideação" />`;
-        document.getElementById('modalWireframeImage').innerHTML = `<img src="${projectImages[projectKey].wireframe}" alt="Wireframe" />`;
-        document.getElementById('modalPrototypeImage').innerHTML = `<img src="${projectImages[projectKey].prototype}" alt="Protótipo" />`;
+        const renderImages = (imgData, alt) => {
+            if (!imgData) return '';
+            const images = Array.isArray(imgData) ? imgData : [imgData];
+            return images.map(src => `<img src="${src}" alt="${alt}" />`).join('');
+        };
+
+        document.getElementById('modalIdeationImage').innerHTML = renderImages(projectImages[projectKey].ideation, 'Ideação');
+        document.getElementById('modalWireframeImage').innerHTML = renderImages(projectImages[projectKey].wireframe, 'Wireframe');
+        document.getElementById('modalPrototypeImage').innerHTML = renderImages(projectImages[projectKey].prototype, 'Protótipo');
     }
 
     document.getElementById('projectModal').classList.add('active');
@@ -226,7 +232,7 @@ function getPortugueseProjectData(projectKey) {
             title: 'School Task',
             description: 'Aplicativo para gerenciar tarefas e atividades usando o método do Rafael Medeiros com interface intuitiva.',
             technologies: 'Figma, Ionic, Firebase, AWS e Google Cloud',
-            duration: 'Em andamento desde 2025',
+            duration: 'Em andamento desde março de 2025',
             team: 'Equipe de 1 UX e 2 programadores',
             results: 'Aumento na produtividade dos usuários',
             problemText: 'O principal desafio inicial consistia em transpor uma metodologia de ensino já validada (método Rafael Medeiros) para um aplicativo. Focamos em um público-alvo muito bem definido: alunos engajados que já possuíam alta familiaridade com os conceitos. O objetivo era criar uma ferramenta que não apenas complementasse a educação, mas organizasse a vida do usuário sem parecer distante da comunidade.',
@@ -240,7 +246,7 @@ function getPortugueseProjectData(projectKey) {
             title: 'Sua Marca Ponto Com',
             description: 'Aplicativo para venda de produtos para barbearias (B2B/CNPJs) com ecossistema completo de cursos e suporte.',
             technologies: 'Somente em Figma',
-            duration: '6 meses',
+            duration: 'Em andamento desde fevereiro de 2026',
             team: 'Equipe multidisciplinar',
             results: 'Ecossistema unificado para barbearias',
             problemText: 'Falta de plataforma centralizada para compra de produtos B2B e capacitação em barbearias.',
@@ -268,7 +274,7 @@ function getPortugueseProjectData(projectKey) {
             title: 'Be Hard',
             description: 'App de acompanhamento de exercícios, permitindo uso autônomo da própria evolução ou auxílio de personal trainer.',
             technologies: 'Figma, Swift, Kotlin',
-            duration: '7 meses',
+            duration: 'Em andamento desde dezembro de 2025',
             team: 'Equipe de desenvolvimento e especialistas em saúde',
             results: 'Lançamento com match rápido entre alunos e instrutores',
             problemText: 'A falta de motivação e acompanhamento estruturado para quem treina de forma independente.',
@@ -326,39 +332,49 @@ function getPortugueseProjectData(projectKey) {
 
 const projectImages = {
     'school-task': {
-        ideation: 'prints/schooltask1.png?w=800&h=400&fit=crop',
-        wireframe: 'prints/schooltask2.png?w=800&h=400&fit=crop',
+        ideation: [
+            'prints/schooltask1-1.png?w=800&h=400&fit=crop',
+            'prints/schooltask1.png?w=800&h=400&fit=crop'
+        ],
+        wireframe: [
+            'prints/schooltask2-1.png?w=800&h=400&fit=crop',
+            'prints/schooltask2.png?w=800&h=400&fit=crop',
+            'prints/schooltask2-2.png?w=800&h=400&fit=crop'
+        ],
         prototype: 'prints/schooltask3.png?w=800&h=400&fit=crop'
     },
     'sua-marca': {
-        ideation: 'projeto2.png?w=800&h=400&fit=crop',
-        wireframe: 'projeto2.png?w=800&h=400&fit=crop',
-        prototype: 'projeto2.png?w=800&h=400&fit=crop'
+        ideation: 'prints/suamarca1.png?w=800&h=400&fit=crop',
+        wireframe: 'prints/suamarca2.png?w=800&h=400&fit=crop',
+        prototype: 'prints/suamarca3.png?w=800&h=400&fit=crop'
     },
     'beleza-rara': {
-        ideation: 'projeto3.png?w=800&h=400&fit=crop',
-        wireframe: 'projeto3.png?w=800&h=400&fit=crop',
-        prototype: 'projeto3.png?w=800&h=400&fit=crop'
+        ideation: 'prints/belezarara1.png?w=800&h=400&fit=crop',
+        wireframe: 'prints/belezarara2.png?w=800&h=400&fit=crop',
+        prototype: 'prints/belezarara3.png?w=800&h=400&fit=crop'
     },
     'be-hard': {
-        ideation: 'projeto4.png?w=800&h=400&fit=crop',
-        wireframe: 'projeto4.png?w=800&h=400&fit=crop',
-        prototype: 'projeto4.png?w=800&h=400&fit=crop'
+        ideation: 'prints/behard1.png?w=800&h=400&fit=crop',
+        wireframe: 'prints/behard2.png?w=800&h=400&fit=crop',
+        prototype: 'prints/behard3.png?w=800&h=400&fit=crop'
     },
     'e-planner': {
-        ideation: 'projeto5.png?w=800&h=400&fit=crop',
-        wireframe: 'projeto5.png?w=800&h=400&fit=crop',
-        prototype: 'projeto5.png?w=800&h=400&fit=crop'
+        ideation: 'prints/eplanner1.png?w=800&h=400&fit=crop',
+        wireframe: [
+            'prints/eplanner2.png?w=800&h=400&fit=crop',
+            'prints/eplanner2-1.png?w=800&h=400&fit=crop'
+        ],
+        prototype: 'prints/eplanner3.png?w=800&h=400&fit=crop'
     },
     'vtech': {
-        ideation: 'projeto6.png?w=800&h=400&fit=crop',
-        wireframe: 'projeto6.png?w=800&h=400&fit=crop',
-        prototype: 'projeto6.png?w=800&h=400&fit=crop'
+        ideation: 'prints/vtech1.jpg?w=800&h=400&fit=crop',
+        wireframe: 'prints/vtech2.png?w=800&h=400&fit=crop',
+        prototype: 'prints/vtech3.png?w=800&h=400&fit=crop'
     },
     'popclick': {
-        ideation: 'projeto7.png?w=800&h=400&fit=crop',
-        wireframe: 'projeto7.png?w=800&h=400&fit=crop',
-        prototype: 'projeto7.png?w=800&h=400&fit=crop'
+        ideation: 'prints/popclick1.webp?w=800&h=400&fit=crop',
+        wireframe: 'prints/popclick2.png?w=800&h=400&fit=crop',
+        prototype: 'prints/popclick3.png?w=800&h=400&fit=crop'
     }
 };
 
